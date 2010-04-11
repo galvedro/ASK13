@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Yasim Schhleicher ASK 13 Glider
+
+copyright 2010 Patrice Poly
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Schleicher ASK 13 Glider</description>
+  <author>Patrice Poly</author>
+  <status>early-production</status>
+  <aircraft-version>20100324</aircraft-version>
+  
+  
+  <flight-model archive="y">yasim</flight-model>
+  <aero archive="y">ask13</aero>
+  
+		<startup>
+			<splash-texture>Aircraft/ASK13/splash.png</splash-texture>
+		</startup>
+
+
+  <model>
+   <path archive="y">Aircraft/ASK13/Models/ask13.xml</path>
+  </model>
+
+		<sound>
+			<path>Aircraft/ASK13/Sounds/ask13-sound.xml</path>
+		</sound>
+  
+  <help>
+   <title>ASK 13</title>
+     </help>
+  <!-- hide the 2D panel -->
+ 
+  <panel>
+   <visibility archive="y">false</visibility>
+  </panel>
+
+  <!-- position the pilot viewpoint and angle -->
+  
+  <view n="0">
+	<name>Default</name>
+	<type>lookfrom</type>
+	<internal type="bool">true</internal>
+	<config>
+	    <from-model type="bool">true</from-model>
+	    <from-model-idx type="int">0</from-model-idx>
+	    
+	    <x-offset-m archive="y">0</x-offset-m>
+	    <y-offset-m archive="y">0.675</y-offset-m>
+	    <z-offset-m archive="y">1.476</z-offset-m>
+	    <pitch-offset-deg>-10</pitch-offset-deg>
+	    <default-field-of-view-deg>55.0</default-field-of-view-deg>
+	    <limits>
+			<enabled type="bool">true</enabled>
+			<left>
+				<heading-max-deg type="double">160</heading-max-deg>
+				<x-offset-max-m type="double">0.15</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</left>
+			<right>
+				<heading-max-deg type="double">160</heading-max-deg>
+				<x-offset-max-m type="double">0.15</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</right>
+	    </limits>
+	</config>
+  </view>
+	
+  <view n="101">
+	<name>Copilot</name>
+	<type>lookfrom</type>
+	<internal type="bool">true</internal>
+	<config>	
+	    <from-model type="bool">true</from-model>
+	    <from-model-idx type="int">0</from-model-idx>
+	    
+	    <x-offset-m archive="y">0</x-offset-m>
+	    <y-offset-m archive="y">0.830</y-offset-m>
+	    <z-offset-m archive="y">2.529</z-offset-m>
+	    <pitch-offset-deg>-10</pitch-offset-deg>
+	    <default-field-of-view-deg>55.0</default-field-of-view-deg>
+	    <limits>
+			<enabled type="bool">true</enabled>
+			<left>
+				<heading-max-deg type="double">95</heading-max-deg>
+				<x-offset-max-m type="double">0.10</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</left>
+			<right>
+				<heading-max-deg type="double">95</heading-max-deg>
+				<x-offset-max-m type="double">0.10</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</right>
+	    </limits>
+	</config>
+  </view>
+
+
+
+ 		<hitches>
+			<!-- make sure some properties do exist, when the list for multiplayer transfere is defined-->
+			<!-- they need to be in the same value, as they are initilized in the FDM, to get the same values after reset
+				    should fix this somehow-->
+			<aerotow>
+				<tow>
+					<length type="float">60</length>
+					<elastic-constant type="float">10000</elastic-constant>
+					<weight-per-m-kg-m type="float">1</weight-per-m-kg-m>
+					<dist type="float">1</dist>
+					<connected-to-property-node type="bool"></connected-to-property-node>
+					<brake-force type="float">100000</brake-force>
+					<connected-to-ai-or-mp-callsign type ="string">*</connected-to-ai-or-mp-callsign>
+					<end-force-x type ="float">0</end-force-x>
+					<end-force-y type ="float">0</end-force-y>
+					<end-force-z type ="float">0</end-force-z>
+				</tow>
+				<speed-in-tow-direction type="float">0</speed-in-tow-direction>
+				<open type="bool">true</open>
+				<local-pos-x type="float">0</local-pos-x>
+				<local-pos-y type="float">0</local-pos-y>
+				<local-pos-z type="float">0</local-pos-z>
+				<is-slave type="bool">false</is-slave>
+			</aerotow>
+		</hitches>
+
+	</sim>
+	<controls>
+		<flight>
+		  <elevator-trim>0.2195</elevator-trim> <!-- controllable -->
+		</flight>
+		<engines>
+		  <engine>
+		    <throttle>1.0</throttle>
+		  </engine>
+		</engines>
+		<winch>
+			<place type="bool">false</place>
+		</winch>
+		<aerotow>
+			<find-aircraft type="bool">false</find-aircraft>
+		</aerotow>
+	</controls>
+
+	<input>
+		<keyboard>
+			<key n="23">
+			<name>Ctrl-w</name>
+			<desc>Place Winch 1000m in front of aircraft</desc>
+			<binding>
+				<command>property-assign</command>
+				<property>/controls/winch/place</property>
+				<value type="bool">true</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/winch/place</property>
+					<value type="bool">false</value>
+				</binding>
+			</mod-up>
+			</key>
+			<key n="87">
+				<name>W</name>
+				<desc>Toggle winch hook</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+						var p = "/sim/hitches/winch/open";
+						setprop(p, !getprop(p));
+					</script>
+				</binding>
+			</key>
+			<key n="119">
+				<name>w</name>
+				<desc>Increase winch speed</desc>
+				<binding>
+					<command>nasal</command>
+					<script>interpolate("/sim/hitches/winch/winch/rel-speed", 1.0, 2)</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>interpolate("/sim/hitches/winch/winch/rel-speed", 0.0, 2)</script>
+					</binding>
+				</mod-up>
+			</key>
+			<key n="15">
+				<name>Ctrl-o</name>
+				<desc>Find aircraft for aerotow</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/aerotow/find-aircraft</property>
+					<value type="bool">true</value>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>property-assign</command>
+						<property>/controls/aerotow/find-aircraft</property>
+						<value type="bool">false</value>
+					</binding>
+				</mod-up>
+			</key>
+			<key n="111">
+				<name>o</name>
+				<desc>Lock aerotow hook</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/hitches/aerotow/open</property>
+					<value type="bool">false</value>
+				</binding>
+			</key>
+			<key n="79">
+				<name>O</name>
+				<desc>Open aerotow hook</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/hitches/aerotow/open</property>
+					<value type="bool">true</value>
+				</binding>
+			</key>
+		</keyboard>
+	</input>
+
+ 	<nasal>
+		<ask13>
+			<file>Aircraft/ASK13/Nasal/wool-thread.nas</file>
+			<file>Aircraft/ASK13/Nasal/AR3201.nas</file>
+		</ask13>
+	</nasal>
+  
+</PropertyList>
