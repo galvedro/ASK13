@@ -230,8 +230,10 @@ copyright 2010 Patrice Poly
 
  	<nasal>
 		<ask13>
+			<file>Aircraft/Instruments-3d/glider/vario/ilec-sc7/ilec-sc7.nas</file>
 			<file>Aircraft/ASK13/Nasal/wool-thread.nas</file>
 			<file>Aircraft/ASK13/Nasal/AR3201.nas</file>
+			<file>Aircraft/ASK13/Nasal/immat.nas</file>
 		</ask13>
 	</nasal>
   

@@ -87,13 +87,7 @@
     <min>0.0</min>
     <max>2</max>
    </volume>
-   <!--   <volume>
- <property>position/altitude-ft</property>
-    <factor>-0.000015</factor>
-    <offset>1.0</offset>
-    <min>0.1</min>
-    <max>1.0</max>
-   </volume>  -->
+
    <volume> 
      <property>velocities/airspeed-kt</property>
      <factor>0.015</factor>
@@ -139,42 +133,32 @@
     <factor>0.1</factor>
    </pitch>
   </buffet>
-  
-
-<!--<variometer>
-   <name>variometer</name>
-   <mode>looped</mode>
-   <path>Aircraft/bocian/Sounds/vario.wav</path>
-    <condition>
-    <property>sim/hitches/winch/open</property>
-    <greater-than>
-     <property>environment/wind-from-down-fps</property>
-     <value>0.01</value>
-    </greater-than>
-    </condition>
-   <pitch>
-    <property>environment/wind-from-down-fps</property>
-    <factor>0.125</factor>
-    <offset>1.0</offset>
-   </pitch>
-  </variometer>-->
-
 
 <variometer-up>
    <name>variometer-up</name>
    <mode>looped</mode>
    <path>Aircraft/ASK13/Sounds/vario.wav</path>
-    <condition>
+   <condition>
+   <and>
      <greater-than>
-     <property>velocities/vertical-speed-fps</property>
+      <property>instrumentation/ilec-sc7/audio</property>
+     <value>0</value>
+     </greater-than>
+     <greater-than>
+	 <property>instrumentation/ilec-sc7/te-reading-mps</property>
      <value>0.01</value>
-    </greater-than>
-         </condition>
-       <pitch>
-    <property>velocities/vertical-speed-fps</property>
-    <factor>0.075</factor>
-   <offset>1.0</offset>
-   </pitch>
+     </greater-than>
+     </and>
+    </condition>
+    <pitch>
+     <property>instrumentation/ilec-sc7/te-reading-mps</property> 
+     <factor>0.246</factor>
+     <offset>1.0</offset>
+    </pitch>
+    <volume>
+     <property>instrumentation/ilec-sc7/volume</property>
+     <max>1</max>
+    </volume>
   </variometer-up>
   
 <variometer-down>
@@ -182,23 +166,32 @@
    <mode>looped</mode>
    <path>Aircraft/ASK13/Sounds/vario2.wav</path>
     <condition>
-    <less-than>
-    <property>velocities/speed-down-fps</property>
-    <value>35.00</value>
-    </less-than>
     <and>
-    <greater-than>
-    <property>velocities/speed-down-fps</property>
-    <value>-0.01</value>
-    </greater-than>
+     <equals>
+     <property>instrumentation/ilec-sc7/audio</property>
+     <value>2</value>
+     </equals>
+     <greater-than>
+      <property>instrumentation/ilec-sc7/te-reading-mps</property>
+      <value>-10.66</value>
+     </greater-than>
+    <less-than>
+      <property>instrumentation/ilec-sc7/te-reading-mps</property>
+      <value>-0.01</value>
+     </less-than>
     </and>
     </condition>
     <pitch>
-    <property>velocities/speed-down-fps</property>
-    <factor>-0.015</factor>
-   <offset>1</offset>
-   </pitch>
-  </variometer-down>
+     <property>instrumentation/ilec-sc7/te-reading-neg</property>
+     <factor>-0.05</factor>
+     <offset>1.0</offset>
+    </pitch>
+    <volume>
+     <property>instrumentation/ilec-sc7/volume</property>
+     <max>1</max>
+    </volume>
+    
+</variometer-down>
 
 
   <winch_tow>
