@@ -7,7 +7,7 @@
 </approach>
 
 <!-- Cruise configuration -->
-<cruise speed="45" alt="5000" glide-angle="2">
+<cruise speed="45" alt="5000" glide-angle="23">
 </cruise>
 
 <!-- pilot's eyepoint -->
@@ -43,7 +43,7 @@
 
 <hstab x="-6.869" y="0.0" z="0.727" taper="0.53" 
 	   length="1.505" chord="1.053" sweep="0" incidence="0" effectiveness="1.8">
-	<stall aoa="30" width="16" peak="1.5"/>
+	<stall aoa="12" width="16" peak="1.5"/>
 		<flap0 start="0.0" end="1.0" lift="1.6" drag="1.3"/>
 			<control-input axis="/controls/flight/elevator" control="FLAP0"/>
 			<control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
