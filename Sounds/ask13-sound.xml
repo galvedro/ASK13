@@ -218,12 +218,12 @@
    <path>Aircraft/ASK13/Sounds/creak.wav</path>
    <condition>
     <greater-than>
-     <property>accelerations/pilot-gdamped</property>
+     <property>accelerations/pilot-g</property>
      <value>1.3</value>
     </greater-than>
    </condition>
    <volume>
-    <property>accelerations/pilot-gdamped</property>
+    <property>accelerations/pilot-g</property>
     <factor>0.3</factor>
     <max>1</max>
    </volume>

@@ -178,6 +178,49 @@ copyright 2010 Patrice Poly
 			</aerotow>
 		</hitches>
 
+		<flight-recorder>
+			<replay-config type="int">0</replay-config>
+			<config n="0" include="/Aircraft/Generic/flightrecorder/generic-glider.xml">
+				<!-- Add some custom properties -->
+
+				<signal>
+					<type>float</type>
+					<property type="string">/velocities/groundspeed-kt</property>
+				</signal>
+				<signal>
+					<type>float</type>
+					<property type="string">/fdm/jsbsim/aero/alpha-rad[0]</property>
+				</signal>
+				<signal>
+					<type>float</type>
+					<property type="string">/accelerations/pilot-g</property>
+				</signal>
+
+				<!-- The ASK13 uses some "virtual" gear (contact points).
+				     Their "wow" properties need to be recorded. -->
+				<signal>
+					<type>bool</type>
+					<property type="string">/gear/gear[1]/wow</property>
+				</signal>
+				<signal>
+					<type>bool</type>
+					<property type="string">/gear/gear[2]/wow</property>
+				</signal>
+				<signal>
+					<type>bool</type>
+					<property type="string">/gear/gear[3]/wow</property>
+				</signal>
+				<signal>
+					<type>bool</type>
+					<property type="string">/gear/gear[4]/wow</property>
+				</signal>
+				<signal>
+					<type>bool</type>
+					<property type="string">/sim/hitches/winch/open</property>
+				</signal>
+			</config>
+		</flight-recorder>
+
 	</sim>
 	<controls>
 		<flight>
