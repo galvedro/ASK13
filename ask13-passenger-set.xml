@@ -20,18 +20,18 @@
   
   <flight-model>null</flight-model>
   
-  		<startup>
-			<splash-texture>Aircraft/ASK13/splash.rgb</splash-texture>
-		</startup>
-
+  <startup>
+   <splash-texture>Aircraft/ASK13/splash.png</splash-texture>
+  </startup>
+  
   <presets>
    <onground type="bool">false</onground>
    <altitude-agl-ft type="double">30.0</altitude-agl-ft>
   </presets>
-
+  
   <!-- 3d model -->
   <model>
-   <path>Models/Geometry/null.ac</path>
+   <path>Aircraft/ASK13/Models/ask13-passenger.xml</path>
   </model>
 
   <!-- Views -->
