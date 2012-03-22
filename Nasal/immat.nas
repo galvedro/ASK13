@@ -19,7 +19,8 @@ var refresh_immat = func {
     }
 }
 
-setlistener("/sim/signals/fdm-initialized", func {
+var fdm_init_listener = setlistener("/sim/signals/fdm-initialized", func {
+  removelistener(fdm_init_listener);
   if (props.globals.getNode("/sim/model/immat") == nil) {
     var immat = props.globals.getNode("/sim/model/immat",1);
     var callsign = props.globals.getNode("/sim/multiplay/callsign");
