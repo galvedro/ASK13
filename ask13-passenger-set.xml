@@ -52,8 +52,8 @@
 
     <!-- x/y/z == right/up/back -->
 	    <x-offset-m archive="y">0</x-offset-m>
-	    <y-offset-m archive="y">0.830</y-offset-m>
-	    <z-offset-m archive="y">2.529</z-offset-m>
+	    <y-offset-m archive="y">0.030</y-offset-m>
+	    <z-offset-m archive="y">-0.171</z-offset-m>
 	    <pitch-offset-deg>-10</pitch-offset-deg>
 	    <default-field-of-view-deg>55.0</default-field-of-view-deg>
 	    <limits>
@@ -88,8 +88,8 @@
 
     <!-- x/y/z == right/up/back -->
 	    <x-offset-m archive="y">0</x-offset-m>
-	    <y-offset-m archive="y">0.675</y-offset-m>
-	    <z-offset-m archive="y">1.476</z-offset-m>
+	    <y-offset-m archive="y">-0.125</y-offset-m>
+	    <z-offset-m archive="y">-1.224</z-offset-m>
 	    <pitch-offset-deg>-10</pitch-offset-deg>
 	    <default-field-of-view-deg>55.0</default-field-of-view-deg>
 	    <limits>
