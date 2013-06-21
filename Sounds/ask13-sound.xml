@@ -78,7 +78,7 @@
   <airbrakes>
    <name>airbrakes</name>
    <mode>looped</mode>
-   <path>Aircraft/ASK13/Sounds/airbrakes2.wav</path>
+   <path>Aircraft/ASK13/Sounds/airbrakes.wav</path>
    <property>velocities/airspeed-kt</property>
    <volume>
     <property>/surface-positions/speedbrake-pos-norm</property>
