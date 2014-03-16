@@ -107,8 +107,8 @@
    <path>Aircraft/ASK13/Sounds/airbrakes-lock.wav</path>
    <condition>
     <equals>
-      <property>controls/engines/engine/throttle</property>
-      <value>1</value>
+      <property>surface-positions/speedbrake-pos-norm</property>
+      <value>0</value>
     </equals>  
    </condition>
   </airbrakes_lock>

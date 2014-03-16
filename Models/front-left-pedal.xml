@@ -7,7 +7,7 @@
  <animation>
   <type>rotate</type>
   <object-name>left-pedals-link</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>25</factor>

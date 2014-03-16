@@ -6,10 +6,11 @@
 <PropertyList>
 
  <path>ask13.ac</path>
+
  <offsets>
-   <x-m>-2.7</x-m>
-   <y-m>0</y-m>
-   <z-m>-0.8</z-m>
+   <x-m>0.</x-m>
+   <y-m>0.</y-m>
+   <z-m>0.</z-m>
    <pitch-deg>0.0</pitch-deg>
  </offsets>
 
@@ -57,7 +58,7 @@
 	 <path>Aircraft/ASK13/Models/instruments/winter-asi-6221/winter-asi-6221.xml</path>
 	 <offsets>
 		 <x-m>1.782</x-m>
-		 <y-m>0.000</y-m>
+		 <y-m>0.00</y-m>
 		 <z-m>0.426</z-m>
 		 <pitch-deg>-10</pitch-deg>
 	 </offsets>	 
@@ -314,18 +315,18 @@
    <animation>
    <type>rotate</type>
    <object-name>front-airbrakes-handle</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
+       <ind>1.0</ind>
        <dep>45</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>5.0</dep>
      </entry>
      <entry>
-       <ind>1</ind>
+       <ind>0</ind>
        <dep>0</dep>
      </entry>
       </interpolation>
@@ -344,18 +345,18 @@
     <animation>
    <type>rotate</type>
    <object-name>rear-airbrakes-handle</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
+       <ind>1.0</ind>
        <dep>45</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>5.0</dep>
      </entry>
      <entry>
-       <ind>1</ind>
+       <ind>0</ind>
        <dep>0</dep>
      </entry>
       </interpolation>
@@ -374,19 +375,19 @@
     <animation>
    <type>rotate</type>
    <object-name>left-top-airbrake</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
-       <dep>65</dep>
+       <ind>0</ind>
+       <dep>0</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>7</dep>
      </entry>
      <entry>
-       <ind>1</ind>
-       <dep>0</dep>
+       <ind>1.0</ind>
+       <dep>65</dep>
      </entry>
       </interpolation>
 		<center>
@@ -404,19 +405,19 @@
      <animation>
    <type>rotate</type>
    <object-name>left-bottom-airbrake</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
-       <dep>65</dep>
+       <ind>0</ind>
+       <dep>0</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>7</dep>
      </entry>
      <entry>
-       <ind>1</ind>
-       <dep>0</dep>
+       <ind>1.0</ind>
+       <dep>65</dep>
      </entry>
       </interpolation>
 		<center>
@@ -434,19 +435,19 @@
      <animation>
    <type>rotate</type>
    <object-name>right-top-airbrake</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
-       <dep>65</dep>
+       <ind>0</ind>
+       <dep>0</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>7</dep>
      </entry>
      <entry>
-       <ind>1</ind>
-       <dep>0</dep>
+       <ind>1.0</ind>
+       <dep>65</dep>
      </entry>
       </interpolation>
 		<center>
@@ -464,19 +465,19 @@
       <animation>
    <type>rotate</type>
    <object-name>right-bottom-airbrake</object-name>
-   <property>/controls/engines/engine/throttle</property>
+   <property>surface-positions/speedbrake-pos-norm</property>
    <interpolation>
      <entry>
-       <ind>0.0</ind>
-       <dep>65</dep>
+       <ind>0</ind>
+       <dep>0</dep>
      </entry>
      <entry>
-       <ind>0.98</ind>
+       <ind>0.02</ind>
        <dep>7</dep>
      </entry>
      <entry>
-       <ind>1</ind>
-       <dep>0</dep>
+       <ind>1.0</ind>
+       <dep>65</dep>
      </entry>
       </interpolation>
 		<center>
@@ -494,7 +495,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>left-aileron</object-name>
-		<property>/controls/flight/aileron</property>
+		<property>surface-positions/left-aileron-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>-20</factor>
@@ -513,10 +514,10 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>right-aileron</object-name>
-		<property>/controls/flight/aileron</property>
+		<property>surface-positions/right-aileron-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
-		<factor>-20</factor>
+		<factor>20</factor>
 		<center>
 			<x-m>2.443574</x-m>
 			<y-m>5.697772</y-m>
@@ -532,7 +533,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator-and-trim</object-name>
-		<property>/controls/flight/elevator</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>-20</factor>
@@ -551,7 +552,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>20</factor>
@@ -571,7 +572,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>front-yoke</object-name>
-		<property>/controls/flight/elevator</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>20</factor>
@@ -591,7 +592,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>front-yoke</object-name>
-		<property>/controls/flight/aileron</property>
+		<property>surface-positions/left-aileron-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>-25</factor>
@@ -610,7 +611,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>back-yoke</object-name>
-		<property>/controls/flight/elevator</property>
+		<property>surface-positions/elevator-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>20</factor>
@@ -630,7 +631,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>back-yoke</object-name>
-		<property>/controls/flight/aileron</property>
+		<property>surface-positions/left-aileron-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
 		<factor>-20</factor>
@@ -649,7 +650,7 @@
  	 <animation>
 		<type>rotate</type>
 		<object-name>front-trim-handl</object-name>
-		<property>/controls/flight/elevator-trim</property>
+		<property>controls/flight/spoilers</property>
 		<min-deg>-50</min-deg>
 		<max-deg>50</max-deg>
 		<factor>-100</factor>
@@ -668,7 +669,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rear-trim-handl</object-name>
-		<property>/controls/flight/elevator-trim</property>
+		<property>controls/flight/spoilers</property>
 		<min-deg>-50</min-deg>
 		<max-deg>50</max-deg>
 		<factor>-100</factor>
@@ -688,7 +689,7 @@
  <animation>
   <type>rotate</type>
   <object-name>front-left-pedal_</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>25</factor>
@@ -707,7 +708,7 @@
   <animation>
   <type>rotate</type>
   <object-name>front-right-pedal_</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>-25</factor>
@@ -726,7 +727,7 @@
   <animation>
   <type>rotate</type>
   <object-name>rear-left-pedal_</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>-25</factor>
@@ -746,7 +747,7 @@
    <animation>
   <type>rotate</type>
   <object-name>rear-right-pedal_</object-name>
-		<property>/controls/flight/rudder</property>
+		<property>surface-positions/rudder-pos-norm</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
 		<factor>25</factor>

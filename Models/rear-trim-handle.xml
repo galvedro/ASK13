@@ -7,7 +7,7 @@
  <animation>
   <type>rotate</type>
   <object-name>trim-handles-link3</object-name>
-		<property>/controls/flight/elevator-trim</property>
+		<property>controls/flight/spoilers</property>
 		<min-deg>-50</min-deg>
 		<max-deg>50</max-deg>
 		<factor>-100</factor>
@@ -26,7 +26,7 @@
   <animation>
   <type>rotate</type>
   <object-name>trim-handles-link4</object-name>
-		<property>/controls/flight/elevator-trim</property>
+		<property>controls/flight/spoilers</property>
 		<min-deg>-50</min-deg>
 		<max-deg>50</max-deg>
 		<factor>-100</factor>

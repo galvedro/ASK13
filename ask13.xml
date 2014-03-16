@@ -23,20 +23,22 @@
 			<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
 			<control-output control="FLAP0" side="left" prop="surface-positions/left-aileron-pos-norm"/>
 			<control-output control="FLAP0" side="right" prop="surface-positions/right-aileron-pos-norm"/>
-			<control-speed control="FLAP0" transition-time="0.5"/>
-	<spoiler start="0.28" end="0.40" lift="-2" drag="30"/>
-	<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
+			<control-speed control="FLAP0" transition-time="0.2"/>
+<!--	<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
 	<control-output control="FLAP0" side="left"
 			prop="surface-positions/left-aileron-pos-norm"/>
 	<control-output control="FLAP0" side="right"
 			prop="surface-positions/right-aileron-pos-norm"/>
 	<control-speed control="FLAP0" transition-time="0.8"/>
+-->
+	<spoiler start="0.28" end="0.40" lift="-2" drag="30"/>
 			<control-input axis="/controls/engines/engine/throttle" control="SPOILER"
 			src0="0" src1="1.0"
 			dst0="1.0" dst1="0"/>
-	<control-input axis="/controls/engines/engine[0]/throttle" control="SPOILER"
+<!--	<control-input axis="/controls/engines/engine[0]/throttle" control="SPOILER"
 			src0="0" src1="1.0"
 			dst0="1.0" dst1="0"/>
+-->
 	<control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
 	<control-speed  control="SPOILER" transition-time="0.5"/>
 </wing>
