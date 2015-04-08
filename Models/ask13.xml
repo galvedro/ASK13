@@ -300,17 +300,23 @@
     </offsets>
   </model>
  
-     <effect>
-  <inherits-from>Aircraft/ASK13/Models/Effects/ask13_bumpspec</inherits-from>
-  <object-name>wing</object-name>
-    </effect>
-    
-         <effect>
-  <inherits-from>Aircraft/ASK13/Models/Effects/ask13_bumpspec-2</inherits-from>
-  <object-name>left-aileron</object-name>
-  <object-name>right-aileron</object-name>
-  <object-name>rudder</object-name>
-    </effect>
+  <effect>
+    <inherits-from>Models/Effects/ask13_bumpspec</inherits-from>
+    <object-name>wing</object-name>
+  </effect>
+
+  <effect>
+    <inherits-from>Models/Effects/ask13_bumpspec-2</inherits-from>
+    <object-name>left-aileron</object-name>
+    <object-name>right-aileron</object-name>
+    <object-name>rudder</object-name>
+  </effect>
+
+  <effect>
+    <inherits-from>Models/Effects/ask13_model</inherits-from>
+    <object-name>fuselage</object-name>
+    <object-name>hstab</object-name>
+  </effect>
     
    <animation>
    <type>rotate</type>
