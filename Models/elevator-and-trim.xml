@@ -24,8 +24,13 @@
  </animation>
  
  <effect>
-  <inherits-from>Aircraft/ASK13/Models/Effects/ask13_bumpspec-2</inherits-from>
+  <inherits-from>Models/Effects/ask13_bumpspec-2</inherits-from>
   <object-name>elevator</object-name>
+ </effect>
+
+ <effect>
+  <inherits-from>Models/Effects/ask13_model</inherits-from>
+  <object-name>trim</object-name>
  </effect>
 
 </PropertyList>
