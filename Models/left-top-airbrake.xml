@@ -34,6 +34,11 @@
 		</axis>
  </animation>
 
+  <effect>
+    <inherits-from>Models/Effects/ask13_model</inherits-from>
+    <object-name>left-top-ab</object-name>
+  </effect>
+
 </PropertyList>
 
 
