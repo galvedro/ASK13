@@ -24,6 +24,11 @@ copyright 2010 Patrice Poly
 			<splash-texture>Aircraft/ASK13/splash.png</splash-texture>
 		</startup>
 
+    <systems>
+      <property-rule n="100">
+        <path>Models/altitude_agl_rule.xml</path>
+      </property-rule>
+    </systems>
 
   <model>
    <path archive="y">Aircraft/ASK13/Models/ask13.xml</path>

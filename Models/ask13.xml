@@ -299,7 +299,12 @@
       <z-m> 0.000 </z-m>
     </offsets>
   </model>
- 
+
+  <model>
+    <path>Models/ask13_shadow.xml</path>
+    <name>ask13_shadow</name>
+  </model>
+
   <effect>
     <inherits-from>Models/Effects/ask13_bumpspec</inherits-from>
     <object-name>wing</object-name>
