@@ -34,7 +34,7 @@
 		</axis>
  </animation>
 
-  <effect>
+ <effect>
     <inherits-from>Models/Effects/ask13_model</inherits-from>
     <object-name>right-top-ab</object-name>
   </effect>
