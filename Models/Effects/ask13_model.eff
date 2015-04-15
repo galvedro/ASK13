@@ -1,4 +1,3 @@
-
 <PropertyList>
   <name>ask13_model</name>
   <inherits-from>Effects/model-combined-deferred</inherits-from>
