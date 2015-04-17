@@ -1,17 +1,17 @@
 AC3Db
-MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "nose-instruments" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
 MATERIAL "grey-paint" rgb 0.6395 0.6395 0.6395 amb 0.2 0.2 0.2 emis 0 0 0 spec 1 1 1 shi 41 trans 0
 MATERIAL "black" rgb 0 0 0 amb 0 0 0 emis 0 0 0 spec 1 1 1 shi 0 trans 0
-MATERIAL "DefaultWhite" rgb 1 1 1 amb 1 1 1 emis 0.15 0.15 0.15 spec 0.5 0.5 0.5 shi 64 trans 0
-MATERIAL "white-paint" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 29 trans 0
+MATERIAL "DefaultWhite" rgb 0 0 1 amb 1 1 1 emis 0.15 0.15 0.15 spec 0.5 0.5 0.5 shi 64 trans 0
+MATERIAL "fuselage-white" rgb 0.72 0.72 0.72 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 128 trans 0
 MATERIAL "dark-grey-plast" rgb 0.25271 0.25271 0.25271 amb 0.1 0.1 0.1 emis 0 0 0 spec 1 1 1 shi 32 trans 0
 MATERIAL "red-paint" rgb 1 0 0 amb 0.2 0.2 0.2 emis 0 0 0 spec 1 1 1 shi 41 trans 0
 MATERIAL "Material.003" rgb 0.269347 0.269347 0.269347 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0
 MATERIAL "bare-metal" rgb 0.233333 0.233333 0.233333 amb 1 1 1 emis 0 0 0 spec 0.9 0.9 0.9 shi 32 trans 0
 MATERIAL "yellow-plastic" rgb 1 0.976026 0 amb 0.2 0.2 0.2 emis 0 0 0 spec 1 1 1 shi 41 trans 0
 MATERIAL "plexiglass" rgb 0.8 0.8 0.8 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 115 trans 0.794872
-MATERIAL "white-paint.002" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 14 trans 0
-MATERIAL "white-paint.001" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 41 trans 0
+MATERIAL "cockpit-interior" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 14 trans 0
+MATERIAL "wings-white" rgb 0.72 0.72 0.72 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 128 trans 0
 OBJECT world
 kids 36
 OBJECT poly
