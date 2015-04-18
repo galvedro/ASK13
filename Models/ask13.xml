@@ -301,6 +301,11 @@
   </model>
  
   <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>windshield</object-name>
+  </effect>
+
+  <effect>
     <inherits-from>Models/Effects/ask13_bumpspec</inherits-from>
     <object-name>wing</object-name>
   </effect>
