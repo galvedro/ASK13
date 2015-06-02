@@ -1,0 +1,1200 @@
+<?xml version="1.0"?>
+
+<system name="angle_of_attack">
+
+ 	<property type="double" value="0.1"> T4T/forces/normal_wing_left-lbs</property>
+ 	<property type="double" value="0.1"> T4T/forces/normal_wing_right-lbs</property>	
+	
+	<channel name="angle_of_attack">		
+			
+	<fcs_function name="T4T/aero/alpha_positive-rad">
+		<function>
+			<description>Alpha AoA as a positive rad</description>		
+			<table>
+				<independentVar><property>aero/alpha-rad</property></independentVar>
+				<tableData>
+					-6.283	0.0
+					-4.71	1.57
+					-3.142	0
+					-1.57	1.57
+					0		0.0
+					1.57	1.57
+					3.142	0
+					4.71	1.57
+					6.283	0.0
+				</tableData>
+			</table>
+		</function>
+	</fcs_function>			
+							
+	<fcs_function name="T4T/aero/beta_positive-rad">
+		<function>
+			<description>Beta AoA as a positive rad</description>	
+			<table>
+				<independentVar><property>aero/beta-rad</property></independentVar>
+				<tableData>
+					-6.283	0.0
+					-4.71	1.57
+					-3.142	0
+					-1.57	1.57
+					0		0.0
+					1.57	1.57
+					3.142	0
+					4.71	1.57
+					6.283	0.0
+				</tableData>
+			</table>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="aero/effective-qbar_wing_left-psf">
+		<function>
+			<description>The adjustment to the force normal generation caused by the airfoil being not perfectly aligned with the airflow</description>
+			<sum>
+				<product>
+					<cos>
+						<product>
+							<value>0.017453</value>		
+							<sum>
+								<property>aero/beta-deg</property>
+								<avg>
+									<property>T4T/structure/wing_left_1/sweep-deg</property>
+									<property>T4T/structure/wing_left_2/sweep-deg</property>
+									<property>T4T/structure/wing_left_3/sweep-deg</property>
+									<property>T4T/structure/wing_left_4/sweep-deg</property>
+									<property>T4T/structure/wing_left_5/sweep-deg</property>
+									<property>T4T/structure/wing_left_6/sweep-deg</property>
+									<property>T4T/structure/wing_left_7/sweep-deg</property>
+									<property>T4T/structure/wing_left_8/sweep-deg</property>
+								</avg>
+							</sum>
+						</product>
+					</cos>
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+					<table>
+						<independentVar><property>aero/alpha-deg</property></independentVar>
+						<tableData>
+						-24		0
+						-16		1
+						-1		1
+						9		1
+						14		1
+						27		0
+						</tableData>
+					</table>
+				</product>
+				<product>
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+					<table>
+						<independentVar><property>aero/alpha-deg</property></independentVar>
+						<tableData>
+						-24		1
+						-16		0
+						-1		0
+						9		0
+						14		0
+						27		1
+						</tableData>
+					</table>
+				</product>
+			</sum>
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="aero/effective-qbar_wing_right-psf">
+		<function>
+			<description>The adjustment to the force normal generation caused by the airfoil being not perfectly aligned with the airflow</description>
+			<sum>
+				<product>
+					<cos>
+						<product>
+							<value>0.017453</value>			
+							<difference>
+								<property>aero/beta-deg</property>
+								<avg>
+									<property>T4T/structure/wing_right_1/sweep-deg</property>
+									<property>T4T/structure/wing_right_2/sweep-deg</property>
+									<property>T4T/structure/wing_right_3/sweep-deg</property>
+									<property>T4T/structure/wing_right_4/sweep-deg</property>
+									<property>T4T/structure/wing_right_5/sweep-deg</property>
+									<property>T4T/structure/wing_right_6/sweep-deg</property>
+									<property>T4T/structure/wing_right_7/sweep-deg</property>
+									<property>T4T/structure/wing_right_8/sweep-deg</property>
+								</avg>			
+							</difference>
+						</product>
+					</cos>
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+					<table>
+						<independentVar><property>aero/alpha-deg</property></independentVar>
+						<tableData>
+						-24		0
+						-16		1
+						-1		1
+						9		1
+						14		1
+						27		0
+						</tableData>
+					</table>
+				</product>
+				<product>
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+					<table>
+						<independentVar><property>aero/alpha-deg</property></independentVar>
+						<tableData>
+						-24		1
+						-16		0
+						-1		0
+						9		0
+						14		0
+						27		1
+						</tableData>
+					</table>
+				</product>
+			</sum>	
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/wing_left_loading">
+		<function>
+        <description>left wing loading</description>			
+			<quotient>
+				<property>T4T/forces/normal_wing_left-lbs</property>
+				<property>T4T/metrics/wingload_max-lbs</property>
+			</quotient>
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="T4T/aero/wing_right_loading">
+		<function>
+        <description>right wing loading</description>			
+			<quotient>
+				<property>T4T/forces/normal_wing_right-lbs</property>
+				<property>T4T/metrics/wingload_max-lbs</property>
+			</quotient>
+		</function>
+	</fcs_function>	
+
+	<fcs_function name="T4T/aero/flex_wing_left-deg">
+		<function>
+		<description>degree of flex on each section of the wing</description>
+			<table>
+				<independentVar><property>T4T/aero/wing_left_loading</property></independentVar>
+				<tableData>
+					-4.5	 4.50
+					0		0.0
+					4.5		-4.5
+				</tableData>
+			</table>
+		</function>			
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/flex_wing_right-deg">
+		<function>
+		<description>degree of flex on each section of the wing</description>
+			<table>
+				<independentVar><property>T4T/aero/wing_right_loading</property></independentVar>
+				<tableData>
+					-4.5	 4.50
+					0		0.0
+					4.5		-4.5
+				</tableData>
+			</table>
+		</function>			
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral_wing_left_1-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>				
+				<property>T4T/structure/wing_left_1/dihedral-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_2-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_2/dihedral-deg</property>
+					<property>T4T/structure/wing_left_1/dihedral-deg</property>	
+				</difference>
+				<property>T4T/aero/dihedral_wing_left_1-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral_wing_left_3-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_3/dihedral-deg</property>
+					<property>T4T/structure/wing_left_2/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_2-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_4-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_4/dihedral-deg</property>
+					<property>T4T/structure/wing_left_3/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_3-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_5-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_5/dihedral-deg</property>
+					<property>T4T/structure/wing_left_4/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_4-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_6-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_6/dihedral-deg</property>
+					<property>T4T/structure/wing_left_5/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_5-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_7-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_7/dihedral-deg</property>
+					<property>T4T/structure/wing_left_6/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_6-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_left_8-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_left_8/dihedral-deg</property>
+					<property>T4T/structure/wing_left_7/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_left_7-deg</property>
+				<property>T4T/aero/flex_wing_left-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_1-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>			
+				<property>T4T/structure/wing_right_1/dihedral-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_2-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_2/dihedral-deg</property>
+					<property>T4T/structure/wing_right_1/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_1-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral_wing_right_3-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_3/dihedral-deg</property>
+					<property>T4T/structure/wing_right_2/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_2-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_4-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_4/dihedral-deg</property>
+					<property>T4T/structure/wing_right_3/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_3-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_5-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_5/dihedral-deg</property>
+					<property>T4T/structure/wing_right_4/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_4-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_6-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_6/dihedral-deg</property>
+					<property>T4T/structure/wing_right_5/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_5-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_7-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_7/dihedral-deg</property>
+					<property>T4T/structure/wing_right_6/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_6-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral_wing_right_8-deg">	
+		<function>
+        <description>dihedral angle of the wing section</description>			
+			<sum>
+				<difference>
+					<property>T4T/structure/wing_right_8/dihedral-deg</property>
+					<property>T4T/structure/wing_right_7/dihedral-deg</property>	
+				</difference>			
+				<property>T4T/aero/dihedral_wing_right_7-deg</property>
+				<property>T4T/aero/flex_wing_right-deg</property>			
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_1-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_1-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_2-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_2-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_3-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_3-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_4-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_4-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_5-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_5-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_6-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_6-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_7-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_7-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_left_8-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_left_8-deg</property>				
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_1-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_1-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_2-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_2-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_3-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_3-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_4-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_4-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_5-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_5-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_6-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_6-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_7-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_7-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral-adjustment_wing_right_8-deg">	
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product>				
+				<sin><property>aero/beta-rad</property></sin>				
+				<property>T4T/aero/dihedral_wing_right_8-deg</property>				
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_1-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_1/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_1-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_1-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_2-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_2/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_2-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_2-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_3-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_3/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_3-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_3-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_4-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_4/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_4-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_4-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_5-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_5/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_5-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_5-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_6-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_6/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_6-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_6-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_7-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_7/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_7-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_7-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/roll-adjustment_wing_right_8-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> -57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/wing_left_8/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_wing_left_8-deg">	
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_wing_right_8-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>	
+
+	<fcs_function name="aero/function/kCLge">
+		<function>
+		<description>Change_in_lift_due_to_ground_effect</description>
+			<product>
+				<table>
+					<independentVar>position/h-agl-ft</independentVar>
+					<tableData>
+						5.27		1.0
+						10.27  		1.0
+					</tableData>
+				</table>
+			</product>
+		</function>
+	</fcs_function>
+
+	<!-- ####ALPHA ANGLE OF ATTACK BY AIRFOIL#### -->
+	<!-- #### Wings #### -->
+	<!-- #### left #### -->
+	
+	<fcs_function name="T4T/aero/AAoA_wing_left_1-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 1</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_1/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_1-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_1-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_left_2-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_2/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_2-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_2-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_left_3-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 3</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_3/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_3-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_3-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_left_4-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 4</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_4/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_4-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_4-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_left_5-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 5</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_5/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_5-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_5-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_left_6-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 6</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_6/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_6-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_6-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_left_7-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_7/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_7-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_7-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_left_8-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing left 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_left_8/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_left_8-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_left_8-deg</property>
+			</sum>
+		</function>
+	</fcs_function>	
+
+	<!-- #### right #### -->
+	
+	<fcs_function name="T4T/aero/AAoA_wing_right_1-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 1</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_1/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_1-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_1-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_right_2-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_2/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_2-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_2-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_right_3-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 3</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_3/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_3-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_3-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_wing_right_4-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 4</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_4/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_4-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_4-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_right_5-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 5</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_5/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_5-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_5-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_right_6-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 6</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_6/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_6-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_6-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_right_7-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_7/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_7-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_7-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/AAoA_wing_right_8-deg">	
+		<function>
+        <description>Alpha Angle of Attack on wing right 2</description>		
+			<sum>
+				<property>aero/alpha-deg</property>
+				<property>T4T/structure/wing_right_8/incidence-deg</property>			
+				<property>T4T/aero/dihedral-adjustment_wing_right_8-deg</property>
+				<property>T4T/aero/roll-adjustment_wing_right_8-deg</property>
+			</sum>
+		</function>
+	</fcs_function>
+
+
+		<!-- #### Tail #### -->
+		
+	<fcs_function name="T4T/aero/dihedral-adjustment_h-stab_right-deg">
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product> <!-- Dihedral effect of delta beta angle on alpha angle -->				
+				<sin><property>aero/beta-rad</property></sin>
+				<property>T4T/structure/h-stab/dihedral-deg</property>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/dihedral-adjustment_h-stab_left-deg">
+		<function>
+        <description>The adjustment to the AoA from the dihedral with BAoA</description>			
+			<product> <!-- Dihedral effect of delta beta angle on alpha angle -->				
+				<property>T4T/aero/dihedral-adjustment_h-stab_right-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_h-stab_right-deg">
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<value> 57.288 </value> <!-- Converts Rads to Degs -->
+				<atan> <!-- angle in Rads -->
+					<quotient> <!-- tan of the angle -->
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/p-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>					
+							<!-- Circumference -->
+							<value> 6.283 </value> <!-- 2 x Pi -->
+							<property>T4T/structure/h-stab_right/y</property>						
+						</product>
+						<property> velocities/vt-fps </property>				
+					</quotient>
+				</atan>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/roll-adjustment_h-stab_left-deg">
+		<function>
+        <description>The adjustment to the AoA from the roll rate</description>
+			<product>
+				<property>T4T/aero/roll-adjustment_h-stab_right-deg</property>
+				<value> -1 </value>
+			</product>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_h-stab-deg">
+		<function>
+        <description>Alpha Angle of Attack on h-stab due to main wing</description>
+			<sum>
+				<product>
+					<table>
+						<independentVar>aero/alpha-deg</independentVar>
+						<tableData>
+							-90		1.0
+							-45		0.0
+							45		0.0
+							90		1.0
+						</tableData>
+					</table>
+					<property>aero/alpha-deg</property>
+				</product>
+				<product>
+					<table>
+						<independentVar>aero/alpha-deg</independentVar>
+						<tableData>
+							-90		0.0
+							-45		1.0
+							45	 	1.0
+							90		0.0
+						</tableData>
+					</table>
+					<difference>
+						<property>aero/alpha-deg</property>
+						<property>T4T/structure/wing_left_1/incidence-deg</property>
+					</difference>
+				</product>
+			</sum>
+		</function>	
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_h-stab_left-deg">
+		<function>
+        <description>Alpha Angle of Attack on h-stab left</description>					
+			<sum>	
+				<property>T4T/aero/AAoA_h-stab-deg</property>
+				<property>T4T/structure/h-stab/incidence-deg</property>	
+				<property>T4T/aero/dihedral-adjustment_h-stab_left-deg</property>
+				<property>T4T/aero/roll-adjustment_h-stab_left-deg</property>						
+			</sum>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/aero/AAoA_h-stab_right-deg">
+		<function>
+        <description>Alpha Angle of Attack on h-stab right</description>					
+			<sum>			
+				<property>T4T/aero/AAoA_h-stab-deg</property>	
+				<property>T4T/structure/h-stab/incidence-deg</property>	
+				<property>T4T/aero/dihedral-adjustment_h-stab_right-deg</property>
+				<property>T4T/aero/roll-adjustment_h-stab_right-deg</property>						
+			</sum>
+		</function>
+	</fcs_function>	
+
+	<fcs_function name="T4T/aero/BAoA_v-stab-deg">
+		<function>
+        <description>Beta Angle of Attack on v-stab</description>
+				<property>aero/beta-deg</property>				
+		</function>
+	</fcs_function>	
+	
+	</channel>
+
+</system>
