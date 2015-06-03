@@ -13,6 +13,7 @@
 		<description>force normal wing_left_1</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect --> 
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_1/damage</property> <!-- damage condition -->
@@ -27,6 +28,7 @@
 		<description>force normal wing_left_2</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_2/damage</property> <!-- damage condition -->
@@ -41,6 +43,7 @@
 		<description>force normal wing_left_3</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_3/damage</property> <!-- damage condition -->
@@ -63,6 +66,7 @@
 		<description>force normal wing_left_4</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure -->			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_4/damage</property> <!-- damage condition -->
@@ -77,6 +81,7 @@
 		<description>force normal wing_left_5</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_5/damage</property> <!-- damage condition -->
@@ -91,6 +96,7 @@
 		<description>force normal wing_left_6</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_6/damage</property> <!-- damage condition -->
@@ -105,6 +111,7 @@
 		<description>force normal wing_left_7</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure -->		
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_left_7/damage</property> <!-- damage condition -->
@@ -119,6 +126,7 @@
 		<description>force normal wing_left_8</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- effective dynamic pressure --> 	
 				<property>T4T/metrics/lift_modifier</property>	
 				<property>T4T/structure/wing_left_8/damage</property> <!-- damage condition -->
@@ -137,6 +145,7 @@
 		<description>force normal wing_right_1</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_1/damage</property> <!-- damage condition -->
@@ -151,6 +160,7 @@
 		<description>force normal wing_right_2</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_2/damage</property> <!-- damage condition -->
@@ -165,6 +175,7 @@
 		<description>force normal wing_right_3</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_3/damage</property> <!-- damage condition -->
@@ -187,6 +198,7 @@
 		<description>force normal wing_right_4</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure -->			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_4/damage</property> <!-- damage condition -->
@@ -201,6 +213,7 @@
 		<description>force normal wing_right_5</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_5/damage</property> <!-- damage condition -->
@@ -215,6 +228,7 @@
 		<description>force normal wing_right_6</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 			
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_6/damage</property> <!-- damage condition -->
@@ -229,6 +243,7 @@
 		<description>force normal wing_right_7</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure -->		
 				<property>T4T/metrics/lift_modifier</property>
 				<property>T4T/structure/wing_right_7/damage</property> <!-- damage condition -->
@@ -243,6 +258,7 @@
 		<description>force normal wing_right_8</description> <!-- force normal -->
 			<product>
 				<value> -1 </value>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- effective dynamic pressure --> 	
 				<property>T4T/metrics/lift_modifier</property>	
 				<property>T4T/structure/wing_right_8/damage</property> <!-- damage condition -->
@@ -257,6 +273,7 @@
 		<function>  <!-- force normal generated by this wing section -->
 		<description>force normal h-stab left</description> <!-- force normal -->
 			<product>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>T4T/metrics/lift_modifier</property>			
 				<property>aero/effective-qbar_wing_right-psf</property> <!-- yes it's correct right wing on left h-stab --> 
 				<property>T4T/structure/h-stab_left/damage</property> <!-- damage condition -->
@@ -271,6 +288,7 @@
 		<function>  <!-- force normal generated by this wing section -->
 		<description>force normal h-stab right</description> <!-- force normal -->
 			<product>
+				<property>aero/function/kCLge</property> <!-- ground effect -->
 				<property>T4T/metrics/lift_modifier</property>
 				<property>aero/effective-qbar_wing_left-psf</property> <!-- yes it's correct left wing on right h-stab --> 
 				<property>T4T/structure/h-stab_right/damage</property> <!-- damage condition -->

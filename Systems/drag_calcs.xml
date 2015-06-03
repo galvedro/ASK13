@@ -51,6 +51,7 @@
 		<function>
 		<description>Induced drag from the left wing</description>
 			<product><!-- http://www.grc.nasa.gov/WWW/K-12/airplane/induced_html -->
+				<property>aero/function/kCDige</property> <!-- ground effect -->						
 				<quotient name="T4T/coefficients/cdi-wing_left"> <!-- Coefficient of Induced Drag on left wing-->
 					<pow> <!-- (dynamic)cl squared -->
 						<property>T4T/coefficients/cz-wing_left</property>
@@ -176,6 +177,7 @@
 		<function>
 		<description>Induced drag from the right wing</description>
 			<product><!-- http://www.grc.nasa.gov/WWW/K-12/airplane/induced_html -->
+				<property>aero/function/kCDige</property> <!-- ground effect -->
 				<quotient name="T4T/coefficients/cdi-wing_right"> <!-- Coefficient of Induced Drag on right wing-->
 					<pow> <!-- (dynamic)cl squared -->
 						<property>T4T/coefficients/cz-wing_right</property>
