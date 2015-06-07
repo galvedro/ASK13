@@ -228,11 +228,11 @@
 						</quotient>					
 						<!-- Circumference -->
 						<value> 3.142 </value>
-						<property>metrics/bw-ft</property>						
+						<value> 7.3 </value> <!-- based on wing shape -->					
 					</product>
 					<value> 2 </value>
 				</pow>
-				<!-- Area -->														
+				<!-- Area -->													
 				<sum>
 					<property>metrics/Sw-sqft</property>
 					<property>metrics/Sh-sqft</property>
@@ -246,7 +246,7 @@
 						0.1		-1.28
 					</tableData>
 				</table>
-				<property>metrics/bw-ft</property> <!-- Armature Distance -->
+				<value> 7.3 </value> <!-- based on wing shape - Armature Distance -->
             </product>
         </function>
 	</fcs_function>
