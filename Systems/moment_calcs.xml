@@ -447,7 +447,7 @@
 		<function>
 			<description>yaw moment</description>
 			<product>
-				<value> -1.0 </value>
+				<value> -1 </value>
 				<property>T4T/forces/normal_v-stab-lbs</property>
 				<property>T4T/moments/armature_tail-ft</property>
 			</product>

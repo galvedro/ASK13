@@ -38,7 +38,7 @@
 
 		<property value="1.0"> T4T/metrics/finish</property> <!-- between 0 and 1. 0 being extream roughness, 0.5 needs a wash, 0.7 NACA Std, 1.0 glider smooth -->
  		<property value="0.74">T4T/metrics/lift_modifier</property> <!-- 1) Adjust Lift Modifier to give aprox 1040lb lift at 33kts at max Cl-->
- 		<property value="1.2">T4T/metrics/drag_modifier</property> <!-- 2) Adjust Drag Modifier to give aprox Lift/Drag ratio of 28 -->
+ 		<property value="1.15">T4T/metrics/drag_modifier</property> <!-- 2) Adjust Drag Modifier to give aprox Lift/Drag ratio of 28 -->
 
 		
 		 <!--	In the structural frame the X-axis increases from the
@@ -502,7 +502,8 @@
                 <z> 0.98 </z>
             </location>
         </pointmass>
-<!--
+
+		<!--
 		<pointmass name="CoG">
             <weight unit="LBS"> 10000 </weight>
             <location name="POINTMASS" unit="IN">
@@ -511,7 +512,6 @@
 			<z> 16.6132823 </z>
             </location>
         </pointmass>
-
 
 		<pointmass name="co-eff1">
             <weight unit="LBS"> 2000 </weight>
@@ -589,7 +589,7 @@
                 <z> 0.6 </z>
                 <z> -10.23 </z>	<!-- zero fuselage alpha -->				
                 <z> -12.55 </z> <!-- v-stab zero alpha -7 degs-->					
-                <z> -2 </z>	<!-- wing stall alpha 22degs-->								
+                <z> -2 </z>	<!-- wing stall alpha 22degs-->						
             </location>
 			<static_friction>  0.9 </static_friction>
 			<dynamic_friction> 0.7 </dynamic_friction>

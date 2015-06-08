@@ -38,8 +38,7 @@
 						<property>T4T/forces/z-vector_h-stab_right-lbs</property>
 					</sum>						
 				</product>
-				<product name="T4T/forces/drag/AoA_v-stab-lbs">
-					<value> -1 </value>			
+				<product name="T4T/forces/drag/AoA_v-stab-lbs">	
 					<sin><property>aero/beta-rad</property></sin>	
 					<property>T4T/forces/normal_v-stab-lbs</property>	
 				</product>
