@@ -3,7 +3,7 @@
 <!--
 ************************************************************************
 Ask 13 simulation config. This files ties together all the components
-used by FGFS to represent the Ask 13. Components include the flight data 
+used by FGFS to represent the Ask 13. Components include the flight data
 model, instrument panel, and external 3D model.
 
 July 2013
@@ -27,17 +27,17 @@ July 2013
 		<user>
 			<callsign>Ok where's the engine ?</callsign>
 		</user>
-   
+
 		<flight-model>jsb</flight-model>
-		<aero>Flight-Damage-Model</aero>
-  
+		<aero>ask13-fdm-jsbsim</aero>
+
 		<startup>
-			<splash-texture>Aircraft/ASK13/splash-T4T.png</splash-texture>
+			<splash-texture>Aircraft/ASK13/splash.png</splash-texture>
 		</startup>
 
 		<virtual-cockpit archive="y">true</virtual-cockpit>
 		<allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
-  
+
 		<sound>
 			<audible>true</audible>
 			<path>Aircraft/ASK13/Sounds/ask13-sound.xml</path>
@@ -51,7 +51,7 @@ July 2013
 
 		<model>
 			<path>Aircraft/ASK13/Models/ask13.xml</path>
-		</model> 
+		</model>
 
   <view n="0">
 	<name>Default</name>
@@ -60,7 +60,7 @@ July 2013
 	<config>
 	    <from-model type="bool">true</from-model>
 	    <from-model-idx type="int">0</from-model-idx>
-	    
+
 	    <x-offset-m archive="y">0</x-offset-m>
 	    <y-offset-m archive="y">0.675</y-offset-m>
 	    <z-offset-m archive="y">1.476</z-offset-m>
@@ -81,7 +81,7 @@ July 2013
 	    </limits>
 	</config>
   </view>
-  
+
    <view n="101">
 	<name>Copilot</name>
 	<type>lookfrom</type>
@@ -89,7 +89,7 @@ July 2013
 	<config>
 	    <from-model type="bool">true</from-model>
 	    <from-model-idx type="int">0</from-model-idx>
-	    
+
 	    <x-offset-m archive="y">0</x-offset-m>
 	    <y-offset-m archive="y">0.830</y-offset-m>
 	    <z-offset-m archive="y">2.529</z-offset-m>
@@ -152,7 +152,7 @@ July 2013
 		<target-z-offset-m archive="y" type="double">2.7</target-z-offset-m>
 	</config>
   </view>
-  
+
 		<hitches>
 			<!-- make sure some properties do exist, when the list for multiplayer transfere is defined-->
 			<!-- they need to be in the same value, as they are initilized in the FDM, to get the same values after reset
@@ -220,11 +220,11 @@ July 2013
 					<property type="string">/sim/hitches/winch/open</property>
 				</signal>
 			</config>
-		</flight-recorder> 
+		</flight-recorder>
 
-		
+
 	</sim>
-	
+
 	<controls>
 		<engines>
 		  <engine>
@@ -237,7 +237,7 @@ July 2013
 		<aerotow>
 			<find-aircraft type="bool">false</find-aircraft>
 		</aerotow>
-	</controls>	
+	</controls>
 
 	<input>
 		<keyboard>
@@ -327,10 +327,6 @@ July 2013
 			<file>Aircraft/ASK13/Nasal/immat.nas</file>
 			<file>Aircraft/ASK13/Nasal/dialogs.nas</file>
 		</ask13>
-	</nasal>	
-	
+	</nasal>
+
 </PropertyList>
-
-
-
-
