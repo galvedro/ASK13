@@ -3,7 +3,7 @@
 <!--
   ASK-13 multiplayer passenger view.
 
-  based on dual control code by Anders Gidenstam  
+  based on dual control code by Anders Gidenstam
   This file is licensed under the GPL license version 2 or later.
 -->
 <!--
@@ -17,18 +17,19 @@
   <author>Patrice Poly</author>
   <status>early-production</status>
   <aircraft-version>20100401</aircraft-version>
+  <variant-of>ask13</variant-of>
   
   <flight-model>null</flight-model>
-  
+
   <startup>
    <splash-texture>Aircraft/ASK13/splash.png</splash-texture>
   </startup>
-  
+
   <presets>
    <onground type="bool">false</onground>
    <altitude-agl-ft type="double">30.0</altitude-agl-ft>
   </presets>
-  
+
   <!-- 3d model -->
   <model>
    <path>Aircraft/ASK13/Models/ask13-passenger.xml</path>
