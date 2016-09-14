@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+
+<system name="drag_calcs">
+	
+	<channel name="drag_calcs">		
+										
+<!-- WING CENTRE OF LIFT CALCS -->
+
+	<!-- BODY frame (+ve moment = clockwise) -->	
+
+<!-- DRAGS -->
+
+	<fcs_function name="T4T/forces/drag/AoA-lbs">
+		<function>
+		<description>drag caused by the aoa on the wings, h-stabs and v-stab</description>					
+			<sum>
+				<product name="T4T/forces/drag/AoA_wing_left-lbs">
+					<value> -1 </value>
+					<sin><property>aero/alpha-rad</property></sin>
+					<difference>					
+						<property>T4T/forces/z-vector_wings_left-lbs</property>
+						<property>T4T/forces/z-vector_h-stab_left-lbs</property>
+					</difference>						
+				</product>
+				<product name="T4T/forces/drag/AoA_wing_right-lbs">
+					<value> -1 </value>
+					<sin><property>aero/alpha-rad</property></sin>
+					<difference>
+						<property>T4T/forces/z-vector_wings_right-lbs</property>
+						<property>T4T/forces/z-vector_h-stab_right-lbs</property>
+					</difference>
+				</product>
+				<product name="T4T/forces/drag/AoA_h-stabs-lbs">
+					<value> -1 </value>
+					<sin><property>aero/alpha-rad</property></sin>
+					<sum>
+						<property>T4T/forces/z-vector_h-stab_left-lbs</property>
+						<property>T4T/forces/z-vector_h-stab_right-lbs</property>
+					</sum>						
+				</product>
+				<product name="T4T/forces/drag/AoA_v-stab-lbs">	
+					<sin><property>aero/beta-rad</property></sin>	
+					<property>T4T/forces/normal_v-stab-lbs</property>	
+				</product>
+			</sum>	
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/forces/drag/induced-vortex_wing_left-lbs">
+		<function>
+		<description>Induced drag from the left wing</description>
+			<product><!-- http://www.grc.nasa.gov/WWW/K-12/airplane/induced_html -->
+				<property>aero/function/kCDige</property> <!-- ground effect -->						
+				<quotient name="T4T/coefficients/cdi-wing_left"> <!-- Coefficient of Induced Drag on left wing-->
+					<pow> <!-- (dynamic)cl squared -->
+						<property>T4T/coefficients/cz-wing_left</property>
+						<value> 2.0 </value>
+					</pow>
+					<product name="T4T/coefficients/wing_efficiency"> <!-- pi*AR*e-->
+						<value>3.142</value> <!-- pi -->
+						<property>T4T/metrics/wing_aspect</property>
+						<property>T4T/metrics/wing_efficiency</property><!-- efficiency value 1.0 for eliptical & 0.7 for straight wing-->
+					</product>
+				</quotient>
+				<property>aero/qbar-psf</property> <!-- dynamic pressure on the wing -->
+				<value> 0.5 </value>
+				<property>metrics/Sw-sqft</property> <!-- Area of left wing --> 
+				<table>
+					<independentVar><property>aero/alpha-deg</property></independentVar>
+					<independentVar lookup="column">fcs/left-aileron-pos-norm</independentVar>
+					<tableData>
+							-1		0		1
+					-27		0		0		0
+					-24		0		0		1
+					-19		0		0		1
+					-16		0		1		1
+					-4		0		1		1
+					-1		1		1		1
+					9		1		1		1
+					12		1		1		0
+					14		1		1		0
+					17		1		0		0
+					27		1		0		0
+					30		0		0		0
+					</tableData>
+				</table>
+			</product>
+		</function>
+		<output>T4T/forces/drag/induced-vortex_wing_left-lbs</output>		
+	</fcs_function>
+	
+	<fcs_function name="T4T/structure/wing_left/damage">
+		<function>
+		<description>average damage of the left wing</description>
+			<avg>
+				<property>T4T/structure/wing_left_8/damage</property>
+				<property>T4T/structure/wing_left_7/damage</property>
+				<property>T4T/structure/wing_left_6/damage</property>
+				<property>T4T/structure/wing_left_5/damage</property>
+				<property>T4T/structure/wing_left_4/damage</property>
+				<property>T4T/structure/wing_left_3/damage</property>
+				<property>T4T/structure/wing_left_2/damage</property>
+				<property>T4T/structure/wing_left_1/damage</property>				
+			</avg>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/damage/wing_left_skin-surface">
+		<function>
+		<description>Skin surface condition</description>
+			<table>
+				<independentVar lookup="row"><property>T4T/structure/wing_left/damage</property></independentVar>
+				<independentVar lookup="column"><property>T4T/metrics/finish</property></independentVar>
+				<tableData>
+								0		0.5			0.75		1.0
+					0			0		0			0			0
+					0.5			0		0.1666		0.25		0.5
+					0.75		0		0.3333		0.5			0.75
+					1.0			0		0.5			0.75		1
+				</tableData>
+			</table>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/forces/drag/skin_wing_left-lbs">
+		<function>
+		<description>parasite drag from the left wing</description>	
+			<product>
+				<property>T4T/metrics/drag_modifier</property>
+				<property>metrics/Sw-sqft</property> <!-- Area -->
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+				<table name="T4T/coefficients/cds-wing_left">
+					<independentVar lookup="row"><property>aero/Re</property></independentVar>
+					<independentVar lookup="column"><property>T4T/damage/wing_left_skin-surface</property></independentVar>
+						<tableData>
+									0		0.5		0.75	1
+						0			0		0		0		0
+						5000000		0.0094	0.00705	0.00256	0.0014
+						10000000	0.00853	0.00640	0.00245	0.00149
+						15000000	0.00792	0.00594	0.00235	0.00162
+						20000000	0.0075	0.00563	0.00227	0.00165
+						25000000	0.00724	0.00543	0.00224	0.0017
+						30000000	0.00714	0.0053550.00219	0.00171
+						</tableData>
+				</table>
+			</product>	
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/forces/drag/speedbrake_wing_left-lbs">
+		<function>
+		<description>form drag</description>
+			<product>
+				<property>T4T/metrics/drag_modifier</property>
+				<cos>
+					<property>T4T/aero/alpha_positive-rad</property>
+				</cos>
+				<cos>
+					<property>T4T/aero/beta_positive-rad</property>
+				</cos>									
+				<value> 1.28 </value> <!-- cd form drag for flat plate 1.28-->
+				<property>T4T/metrics/speedbrake-sqft</property>
+				<table>
+					<independentVar>fcs/throttle-pos-norm</independentVar>
+					<tableData>
+						0	1
+						1	0
+					</tableData>
+				</table>				
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+			</product>
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="T4T/forces/drag/induced-vortex_wing_right-lbs">
+		<function>
+		<description>Induced drag from the right wing</description>
+			<product><!-- http://www.grc.nasa.gov/WWW/K-12/airplane/induced_html -->
+				<property>aero/function/kCDige</property> <!-- ground effect -->
+				<quotient name="T4T/coefficients/cdi-wing_right"> <!-- Coefficient of Induced Drag on right wing-->
+					<pow> <!-- (dynamic)cl squared -->
+						<property>T4T/coefficients/cz-wing_right</property>
+						<value> 2.0 </value>
+					</pow>
+					<property>T4T/coefficients/wing_efficiency</property> <!-- Coefficient of wing efficiency  -->
+				</quotient>
+				<property>aero/qbar-psf</property> <!-- dynamic pressure on the wing -->
+				<value> 0.5 </value>
+				<property>metrics/Sw-sqft</property> <!-- Area of right wing --> 
+				<table>
+					<independentVar><property>aero/alpha-deg</property></independentVar>
+					<independentVar lookup="column">fcs/right-aileron-pos-norm</independentVar>
+					<tableData>
+							-1		0		1
+					-27		0		0		0
+					-24		0		0		1
+					-19		0		0		1
+					-16		0		1		1
+					-4		0		1		1
+					-1		1		1		1
+					9		1		1		1
+					12		1		1		0
+					14		1		1		0
+					17		1		0		0
+					27		1		0		0
+					30		0		0		0
+					</tableData>
+				</table>
+			</product>
+		</function>
+		<output>T4T/forces/drag/induced-vortex_wing_left-lbs</output>		
+	</fcs_function>	
+		
+	<fcs_function name="T4T/structure/wing_right/damage">
+		<function>
+		<description>average damage of the right wing</description>
+			<avg>
+				<property>T4T/structure/wing_right_8/damage</property>
+				<property>T4T/structure/wing_right_7/damage</property>
+				<property>T4T/structure/wing_right_6/damage</property>
+				<property>T4T/structure/wing_right_5/damage</property>
+				<property>T4T/structure/wing_right_4/damage</property>
+				<property>T4T/structure/wing_right_3/damage</property>
+				<property>T4T/structure/wing_right_2/damage</property>
+				<property>T4T/structure/wing_right_1/damage</property>				
+			</avg>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/damage/wing_right_skin-surface">
+		<function>
+		<description>Skin surface condition</description>
+			<table>
+				<independentVar lookup="row"><property>T4T/structure/wing_right/damage</property></independentVar>
+				<independentVar lookup="column"><property>T4T/metrics/finish</property></independentVar>
+				<tableData>
+								0		0.5			0.75		1.0
+					0			0		0			0			0
+					0.5			0		0.1666		0.25		0.5
+					0.75		0		0.3333		0.5			0.75
+					1.0			0		0.5			0.75		1
+				</tableData>
+			</table>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/forces/drag/skin_wing_right-lbs">
+		<function>
+		<description>parasite drag from the right wing</description>	
+			<product>
+				<property>T4T/metrics/drag_modifier</property>
+				<property>metrics/Sw-sqft</property> <!-- Area -->
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+				<table name="T4T/coefficients/cds-wing_right">
+					<independentVar lookup="row"><property>aero/Re</property></independentVar>
+					<independentVar lookup="column"><property>T4T/damage/wing_right_skin-surface</property></independentVar>
+						<tableData>
+									0		0.5		0.75	1
+						0			0		0		0		0
+						5000000		0.0094	0.00705	0.00256	0.0014
+						10000000	0.00853	0.00640	0.00245	0.00149
+						15000000	0.00792	0.00594	0.00235	0.00162
+						20000000	0.0075	0.00563	0.00227	0.00165
+						25000000	0.00724	0.00543	0.00224	0.0017
+						30000000	0.00714	0.0053550.00219	0.00171
+						</tableData>
+				</table>
+			</product>	
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/forces/drag/speedbrake_wing_right-lbs">
+		<function>
+		<description>form drag</description>
+			<product>
+				<property>T4T/metrics/drag_modifier</property>
+				<cos>
+					<property>T4T/aero/alpha_positive-rad</property>
+				</cos>
+				<cos>
+					<property>T4T/aero/beta_positive-rad</property>
+				</cos>									
+				<value> 1.28 </value> <!-- cd form drag for flat plate 1.28-->
+				<property>T4T/metrics/speedbrake-sqft</property>
+				<table>
+					<independentVar>fcs/throttle-pos-norm</independentVar>
+					<tableData>
+						0	1
+						1	0
+					</tableData>
+				</table>				
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/forces/drag/form-lbs">
+		<function>
+			<sum>
+				<product name="T4T/forces/drag/form-front-lbs">
+					<property>T4T/metrics/drag_modifier</property>
+					<cos>
+						<property>T4T/aero/alpha_positive-rad</property>
+					</cos>
+					<cos>
+						<property>T4T/aero/beta_positive-rad</property>
+					</cos>				
+					<value> 0.045 </value> <!-- cd form drag for bullet 0.045-->
+					<property>T4T/metrics/front-sqft</property>				
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+				</product>	
+				<product name="T4T/forces/drag/form-side-lbs">
+					<property>T4T/metrics/drag_modifier</property>
+					<sin>
+						<property>T4T/aero/beta_positive-rad</property>
+					</sin>				
+					<value> 0.045 </value> <!-- cd form drag for bullet 0.045-->
+					<property>T4T/metrics/side-sqft</property>				
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+				</product>
+				<product name="T4T/forces/drag/form-plan-lbs">
+					<property>T4T/metrics/drag_modifier</property>
+					<sin>
+						<property>T4T/aero/alpha_positive-rad</property>
+					</sin>				
+					<value> 0.045 </value> <!-- cd form drag for bullet 0.045-->
+					<property>T4T/metrics/plan-sqft</property>				
+					<property>aero/qbar-psf</property> <!-- dynamic pressure -->
+				</product>				
+			</sum>				
+		</function>
+	</fcs_function>	
+	
+	<summer name="T4T/forces/drag/wings_parasitic-lbs">
+		<input>T4T/forces/drag/AoA_wing_left-lbs</input>
+		<input>T4T/forces/drag/skin_wing_left-lbs</input>
+		<input>T4T/forces/drag/speedbrake_wing_left-lbs</input>		
+		<input>-T4T/forces/drag/AoA_wing_right-lbs</input>
+		<input>-T4T/forces/drag/skin_wing_right-lbs</input>
+		<input>-T4T/forces/drag/speedbrake_wing_right-lbs</input>	
+	</summer>
+
+	<summer name="T4T/forces/drag/wings_induced-lbs">
+		<input>T4T/forces/drag/induced-vortex_wing_left-lbs</input>
+		<input>-T4T/forces/drag/induced-vortex_wing_right-lbs</input>
+	</summer>	
+	
+	
+	<fcs_function name="T4T/forces/DRAG-lbs">
+		<function>
+		<description>Drag</description>
+			<sum>				
+				<property>T4T/forces/drag/AoA-lbs</property>
+				<property>T4T/forces/drag/induced-vortex_wing_left-lbs</property>				
+				<property>T4T/forces/drag/skin_wing_left-lbs</property>
+				<property>T4T/forces/drag/speedbrake_wing_left-lbs</property>				
+				<property>T4T/forces/drag/induced-vortex_wing_right-lbs</property>				
+				<property>T4T/forces/drag/skin_wing_right-lbs</property>	
+				<property>T4T/forces/drag/speedbrake_wing_right-lbs</property>
+				<property>T4T/forces/drag/form-lbs</property>
+			</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/coefficients/Cd">
+		<function>
+		<description>Cd for the plane</description>
+			<quotient>				
+				<property>T4T/forces/DRAG-lbs</property>
+				<sum>
+					<value> 0.001 </value>				
+					<product>
+						<property>metrics/Sw-sqft</property> <!-- Area of right wing --> 
+						<property>aero/qbar-psf</property> <!-- dynamic pressure on the wing -->
+					</product>
+				</sum>					
+			</quotient>
+		</function>
+	</fcs_function>		
+
+	<fcs_function name="T4T/forces/LIFT2DRAG">
+		<function>
+		<description>Lift to drag Ratio</description>
+			<quotient>
+				<property>T4T/forces/LIFT-lbs</property>
+				<property>T4T/forces/DRAG-lbs</property>
+			</quotient>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/forces/Cl2Cd">
+		<function>
+		<description>Cl to Cd Ratio</description>
+			<quotient>
+				<property>T4T/coefficients/Cl</property>
+				<property>T4T/coefficients/Cd</property>
+			</quotient>
+		</function>
+	</fcs_function>
+
+
+	
+	</channel>
+
+</system>
