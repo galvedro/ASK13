@@ -794,6 +794,25 @@
             </summer>
         </channel>
 
+ 	<channel name="Speedbrake">
+
+		<!-- this is used for the animation only, for the FDM effect refer to drag_calcs -->
+
+		<fcs_function name="Speedbrake position">
+		<function>
+		<table>
+		<independentVar>fcs/throttle-pos-norm</independentVar>
+			<tableData>
+				0	1
+				1	0
+			</tableData>
+		</table>
+		</function>
+                <output>fcs/speedbrake-pos-norm</output>
+		</fcs_function>
+
+	</channel>
+
 	</flight_control>
 
 		<aerodynamics>
