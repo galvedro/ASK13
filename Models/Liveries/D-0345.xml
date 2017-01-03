@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      <livery>
+        <name type="string">D-0345</name>
+        <texture>Liveries/D-0345.png</texture>
+        <texture-wing>Liveries/D-0345-wings.color.png</texture-wing>
+        <texture-wing2>Liveries/D-0345-wings-2.color.png</texture-wing2>
+      </livery>
+    </model>
+  </sim>
+</PropertyList>
