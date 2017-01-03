@@ -4,10 +4,14 @@
 
 <!-- Approach configuration -->
 <approach speed="40" aoa="5.2" glide-angle="23">
+    <solve-weight idx="0" weight="170"/>
+    <solve-weight idx="1" weight="170"/>
 </approach>
 
 <!-- Cruise configuration -->
-<cruise speed="45" alt="5000" glide-angle="23">
+<cruise speed="50" alt="5000" glide-angle="23">
+    <solve-weight idx="0" weight="170"/>
+    <solve-weight idx="1" weight="170"/>
 </cruise>
 
 <!-- pilot's eyepoint -->
@@ -16,39 +20,28 @@
 <fuselage ax="0.0" ay="0.0" az="0.0" bx="-7.327" by="0.0" bz="0.5"
 		  width="1" taper="0.28" midpoint="0.24" idrag="1" />
 
-<wing x="-3.077" y="0.271" z="0.311" taper="0.379" incidence="3" twist="-2.5"
-	  length="7.65" chord="1.899" sweep="-8.7" dihedral="5.5" >
+<wing x="-3.0" y="0.271" z="0.311" taper="0.379" incidence="3" twist="-2.5"
+	  length="7.65" chord="1.7" sweep="-8.7" dihedral="5.5" >
 	<stall aoa="12" width="12" peak="1.5"/>
 		<flap0 start="0.512" end="0.9" lift="1.55" drag="1.3"/>
 			<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
 			<control-output control="FLAP0" side="left" prop="surface-positions/left-aileron-pos-norm"/>
 			<control-output control="FLAP0" side="right" prop="surface-positions/right-aileron-pos-norm"/>
 			<control-speed control="FLAP0" transition-time="0.2"/>
-<!--	<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
-	<control-output control="FLAP0" side="left"
-			prop="surface-positions/left-aileron-pos-norm"/>
-	<control-output control="FLAP0" side="right"
-			prop="surface-positions/right-aileron-pos-norm"/>
-	<control-speed control="FLAP0" transition-time="0.8"/>
--->
-	<spoiler start="0.28" end="0.40" lift="-2" drag="30"/>
+	<spoiler start="0.28" end="0.40" lift="-1" drag="50"/>
 			<control-input axis="/controls/engines/engine/throttle" control="SPOILER"
 			src0="0" src1="1.0"
-			dst0="1.0" dst1="0"/>
-<!--	<control-input axis="/controls/engines/engine[0]/throttle" control="SPOILER"
-			src0="0" src1="1.0"
-			dst0="1.0" dst1="0"/>
--->
+                  dst0="1.0" dst1="0"/>
 	<control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
 	<control-speed  control="SPOILER" transition-time="0.5"/>
 </wing>
 
-<hstab x="-6.869" y="0.0" z="0.727" taper="0.53" 
-	   length="1.505" chord="1.053" sweep="0" incidence="0" effectiveness="1.8">
+<hstab x="-6.8" y="0.0" z="0.727" taper="0.53" 
+	   length="1.505" chord="1" sweep="0" incidence="0" effectiveness="1.8">
 	<stall aoa="12" width="16" peak="1.5"/>
 		<flap0 start="0.0" end="1.0" lift="1.6" drag="1.3"/>
 			<control-input axis="/controls/flight/elevator" control="FLAP0"/>
-			<control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+                        <control-input axis="/controls/flight/elevator-trim" control="FLAP0" src0="-1" dst0="-0.5" src1="1" dst1="0.5"/> <!--The elevator trim is much smaller than the elevator itself and therefor has less authority-->
 			<control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
 </hstab>
 
@@ -91,14 +84,39 @@
 <gear x="-1.766" y="7.95" z="0.9" skid="1" compression="0.1" spring="0.9" sfric="1" dfric="1"/>
 
 <!-- pilots -->
+  <!--Pilot-->
+  <weight x="-1.4493" y="0.0" z="0.3" mass-prop="/sim/weight[0]/weight-lb" solve-weight="0"/>
+  <!--Copilot-->
+  <weight x="-2.31453" y="0.0" z="0.3" mass-prop="/sim/weight[1]/weight-lb" solve-weight="1"/>
 
-<!--
-<ballast x="-1.388" y="0" z="0.061" mass="150"/>
-<ballast x="-2.267" y="0" z="0.215" mass="150"/>
--->
-<ballast x="-1.388" y="0" z="0.061" mass="145"/>
-<ballast x="-2.267" y="0" z="0.215" mass="145"/>
-
+  <!--Added for easy ground handling-->
+<!--Assiting gears for ground movement-->
+<gear x="-2" y="3" z="-0.25" compression=".1"
+    spring="0.8" damp="1.2" sfric="0.8" dfric="0.7" skid="true">
+  <control-input axis="/controls/gear/assist" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[6]/position-norm"/>
+</gear>
+<gear x="-2" y="-3" z="-0.25" compression=".1"
+    spring="0.8" damp="1.2" sfric="0.8" dfric="0.7" skid="true">
+  <control-input axis="/controls/gear/assist" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[7]/position-norm"/>
+</gear>
+<!--Pushing/pulling the aircraft around:-->
+<!--TURN, this is done by tearing the wings around-->
+  <thruster x="-2.615"  y="8" z="0.1" vx="1" vy="-1" vz="0" thrust="100">
+  <control-input axis="/controls/flight/rudder2" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"/>
+  </thruster>
+  <thruster x="-2.615"  y="-8" z="0.1" vx="-1" vy="1" vz="0" thrust="100">
+  <control-input axis="/controls/flight/rudder2" control="THROTTLE" src0="-1" src1="1" dst0="-1" dst1="1"/>
+  </thruster>
+  <!--Push/pull forward-->
+  <thruster x="-2.615" y="0" z="-0.466" vx="1" vy="0" vz="0" thrust="200">
+  <control-input axis="/controls/throttle-2" control="THROTTLE"/>
+  </thruster>
+  <!--Push/pull backward-->
+  <thruster x="-2.615" y="0" z="-0.466" vx="-1" vy="0" vz="0" thrust="200">
+      <control-input axis="/controls/throttle-reverse" control="THROTTLE"/>
+  </thruster>
 
 
 <!-- hitch -->

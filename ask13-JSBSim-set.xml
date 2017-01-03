@@ -17,6 +17,7 @@ July 2013
 		<description>Ask 13 (T4T-JSB)</description>
 		<author>Simon'bomber'Morley(FDM),Patrice Poly(3D)</author>
 		<status>early T4T Trial</status>
+                <variant-of>ask13</variant-of>
 		<rating>
 			<FDM type="int">0</FDM>
 			<systems type="int">0</systems>
