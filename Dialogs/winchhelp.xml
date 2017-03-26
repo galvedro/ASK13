@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-12-27 -->
+<PropertyList>
+    <name>winchhelp_dialog</name>
+    <layout>vbox</layout>
+    <default-padding>5</default-padding>
+    <modal>false</modal>
+    <width>400</width>
+    <!-- title bar -->
+    <group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>true</stretch>
+        </empty>
+        <text>
+            <label>Welcome Aboard!</label>
+        </text>
+        <empty>
+            <stretch>true</stretch>
+        </empty>
+        <button>
+            <legend/>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <border>2</border>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+    <layout>hbox</layout>
+    <hrule/>
+    <text>
+        <label>Please note that this aircraft uses a new winch launch system.</label>
+    </text>
+    <text>
+        <label>Go to the Aircraft Help to see how to control it. Have fun!</label>
+    </text>
+    <checkbox>
+            <halign>center</halign>
+            <label>Do not show this again</label>
+            <property>sim/config/hide-winch-msg</property>
+            <binding>
+                    <command>dialog-apply</command>
+            </binding><!--
+            <binding>
+                    <command>property-assign</command>
+                    <property>sim/config/hide-winch-msg</property>
+            </binding>-->
+            <live type="bool">true</live>
+    </checkbox>
+    <button>
+            <pref-width>140</pref-width>
+            <pref-height>50</pref-height>
+            <legend>Aircraft Help</legend>
+            <default>1</default>
+            <border>2</border>
+            <binding>
+                    <command>nasal</command>
+                    <script>gui.showHelpDialog("/sim/help")</script>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+    </button>
+    <hrule />
+</PropertyList>

@@ -4,6 +4,35 @@
 
  <path>front-airbrakes-handle.ac</path>
 
+    <animation>
+        <type>slider</type>
+  <object-name>front-airbrakes-handl</object-name>
+        <visible>true</visible>
+        <drag-direction>vertical</drag-direction>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>/controls/engines/engine/throttle</property>
+                <factor>0.05</factor>
+                <min>0</min>
+                <max>1</max>
+            </binding>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>airbrake</tooltip-id>
+                <label>%s</label>
+                <mapping>nasal</mapping>
+                <property>/controls/engines/engine/throttle</property>
+                <script>
+                    return sprintf("Speedbrake %d%% out", 100-arg[0]*100);
+                </script>
+            </binding>
+        </hovered>
+    </animation>
  <animation>
   <type>rotate</type>
   <object-name>ab-handles-link</object-name>

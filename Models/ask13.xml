@@ -50,8 +50,17 @@
   </animation>
   <animation>
     <type>material</type>
-     <object-name>wing</object-name>
-
+     <object-name>wing.L1</object-name>
+     <object-name>wing.L2</object-name>
+     <object-name>wing.L3</object-name>
+     <object-name>wing.L4</object-name>
+     <object-name>wing.L5</object-name>
+     <object-name>wing.R1</object-name>
+     <object-name>wing.R2</object-name>
+     <object-name>wing.R3</object-name>
+     <object-name>wing.R4</object-name>
+     <object-name>wing.R5</object-name>
+     
     <property-base>sim/model/livery</property-base>
     <texture-prop>texture-wing</texture-prop>
     <texture>texture.png</texture>
@@ -71,6 +80,230 @@
   </animation>
   
   
+    <!--WING BENDING-->
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.L1</object-name>
+        <object-name>wing.L2</object-name>
+        <object-name>wing.L3</object-name>
+        <object-name>wing.L4</object-name>
+        <object-name>wing.L5</object-name>
+        <object-name>wingskidL</object-name>
+        <object-name>aileron.L1</object-name>
+        <object-name>aileron.L2</object-name>
+        <object-name>left-top-airbrake</object-name>
+        <object-name>left-bottom-airbrake</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m> 0.00</x-m>
+            <y-m>-0.29524</y-m>
+            <z-m>0.76528</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.L2</object-name>
+        <object-name>wing.L3</object-name>
+        <object-name>wing.L4</object-name>
+        <object-name>wing.L5</object-name>
+        <object-name>wingskidL</object-name>
+        <object-name>aileron.L1</object-name>
+        <object-name>aileron.L2</object-name>
+        <object-name>left-top-airbrake</object-name>
+        <object-name>left-bottom-airbrake</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m> 0.00</x-m>
+            <y-m>-2.0</y-m>
+            <z-m>0.55468</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.L3</object-name>
+        <object-name>wing.L4</object-name>
+        <object-name>wing.L5</object-name>
+        <object-name>wingskidL</object-name>
+        <object-name>aileron.L1</object-name>
+        <object-name>aileron.L2</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>-4</y-m>
+            <z-m>0.70758</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.L4</object-name>
+        <object-name>wing.L5</object-name>
+        <object-name>wingskidL</object-name>
+        <object-name>aileron.L2</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>-6</y-m>
+            <z-m>0.879</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.L5</object-name>
+        <object-name>wingskidL</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>-7.5</y-m>
+            <z-m>1.02599</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.R1</object-name>
+        <object-name>wing.R2</object-name>
+        <object-name>wing.R3</object-name>
+        <object-name>wing.R4</object-name>
+        <object-name>wing.R5</object-name>
+        <object-name>wingskidR</object-name>
+        <object-name>aileron.R1</object-name>
+        <object-name>aileron.R2</object-name>
+        <object-name>right-top-airbrake</object-name>
+        <object-name>right-bottom-airbrake</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m> 0.00</x-m>
+            <y-m>0.29524</y-m>
+            <z-m>0.76528</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.R2</object-name>
+        <object-name>wing.R3</object-name>
+        <object-name>wing.R4</object-name>
+        <object-name>wing.R5</object-name>
+        <object-name>wingskidR</object-name>
+        <object-name>aileron.R1</object-name>
+        <object-name>aileron.R2</object-name>
+        <object-name>right-top-airbrake</object-name>
+        <object-name>right-bottom-airbrake</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m> 0.00</x-m>
+            <y-m>2.0</y-m>
+            <z-m>0.55468</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.R3</object-name>
+        <object-name>wing.R4</object-name>
+        <object-name>wing.R5</object-name>
+        <object-name>wingskidR</object-name>
+        <object-name>aileron.R1</object-name>
+        <object-name>aileron.R2</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>4</y-m>
+            <z-m>0.70758</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.R4</object-name>
+        <object-name>wing.R5</object-name>
+        <object-name>wingskidR</object-name>
+        <object-name>aileron.R2</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>6</y-m>
+            <z-m>0.879</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wing.R5</object-name>
+        <object-name>wingskidR</object-name>
+        <property>accelerations/pilot-g[0]</property>
+        <factor>-0.5</factor>
+        <offset-deg>0</offset-deg>
+        <center>
+            <x-m>  0.00</x-m>
+            <y-m>7.5</y-m>
+            <z-m>1.02599</z-m>
+        </center>
+        <axis>
+            <x>1.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </axis>
+    </animation>
+    
  <model>
 	 <path>Aircraft/ASK13/Models/instruments/vario-5stv5/winter-vario-5stv5.xml</path>
 	 <offsets>
@@ -363,13 +596,24 @@
   
   <effect>
     <inherits-from>Models/Effects/ask13_bumpspec</inherits-from>
-    <object-name>wing</object-name>
+     <object-name>wing.L1</object-name>
+     <object-name>wing.L2</object-name>
+     <object-name>wing.L3</object-name>
+     <object-name>wing.L4</object-name>
+     <object-name>wing.L5</object-name>
+     <object-name>wing.R1</object-name>
+     <object-name>wing.R2</object-name>
+     <object-name>wing.R3</object-name>
+     <object-name>wing.R4</object-name>
+     <object-name>wing.R5</object-name>
   </effect>
 
   <effect>
     <inherits-from>Models/Effects/ask13_bumpspec-2</inherits-from>
-    <object-name>left-aileron</object-name>
-    <object-name>right-aileron</object-name>
+    <object-name>aileron.L1</object-name>
+    <object-name>aileron.L2</object-name>
+    <object-name>aileron.R1</object-name>
+    <object-name>aileron.R2</object-name>
     <object-name>rudder</object-name>
   </effect>
 
@@ -378,6 +622,32 @@
     <object-name>fuselage</object-name>
     <object-name>hstab</object-name>
   </effect>
+  
+  <!--Main Gear-->
+  
+    <animation>
+        <type>translate</type>
+        <object-name>wheelM</object-name>
+        <property>gear/gear[1]/compression-norm</property>
+        <factor>0.09</factor>
+        <axis>
+            <z>1</z>
+        </axis>
+    </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>wheelM</object-name>
+        <property>gear/gear[1]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <y>1</y>
+        </axis>
+        <center>
+            <x-m>2.61099</x-m>
+            <z-m>-0.28347</z-m>
+        </center>
+    </animation>
+  
   
   <!--Canopy-->
   <animation>
@@ -463,8 +733,8 @@
     <property>sim/model/door-positions/canopy_jettison/position-norm</property>
     <interpolation>
       <entry><ind> 0.0 </ind><dep> 0.0 </dep></entry>
-      <entry><ind> 0.2 </ind><dep> 0.1 </dep></entry>
-      <entry><ind> 1.0 </ind><dep> 0.1 </dep></entry>
+      <entry><ind> 0.2 </ind><dep> 0.4 </dep></entry>
+      <entry><ind> 1.0 </ind><dep> 0.4 </dep></entry>
     </interpolation>
         <axis>
             <z>1</z>
@@ -480,6 +750,20 @@
       <entry><ind> 0.2 </ind><dep> 0.0 </dep></entry>
       <entry><ind> 0.4 </ind><dep> 0.5 </dep></entry>
       <entry><ind> 1.0 </ind><dep> 0.5 </dep></entry>
+    </interpolation>
+        <axis>
+            <x>-1</x>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+    <object-name>canopyfull</object-name>
+    <property>sim/model/door-positions/canopy_jettison/position-norm</property>
+    <interpolation>
+      <entry><ind> 0.0 </ind><dep> 0.0 </dep></entry>
+      <entry><ind> 0.2 </ind><dep> 0.0 </dep></entry>
+      <entry><ind> 0.4 </ind><dep> 0.65 </dep></entry>
+      <entry><ind> 1.0 </ind><dep> 0.65 </dep></entry>
     </interpolation>
         <axis>
             <y>1</y>
@@ -536,7 +820,8 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>canopyL</tooltip-id>
-                <label>Canopy Lock Left: %2.0f</label>
+                <mapping>open-close</mapping>
+                <label>Canopy Lock Left: %s</label>
                 <property>controls/canopy/lock-left</property>
             </binding>
         </hovered>
@@ -584,7 +869,8 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>canopyR</tooltip-id>
-                <label>Canopy JETTISON LOCK: %2.0f</label>
+                <mapping>open-close</mapping>
+                <label>Canopy JETTISON LOCK: %s</label>
                 <property>controls/canopy/lock-right</property>
             </binding>
         </hovered>
@@ -616,7 +902,7 @@
             <binding>
                 <command>property-adjust</command>
                 <property>controls/canopy/window-front</property>
-                <factor>-0.1</factor>
+                <factor>-0.05</factor>
                 <min>0</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -626,7 +912,8 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>windowF</tooltip-id>
-                <label>Window Front: %2.0f</label>
+                <label>Front Window: %3d%% open</label>
+                <mapping>percent</mapping>
                 <property>controls/canopy/window-front</property>
             </binding>
         </hovered>
@@ -637,7 +924,43 @@
         <object-name>windshield.003</object-name>
         <object-name>windshield.004</object-name>
                 <property>controls/canopy/window-front</property>
-        <factor>0.2</factor>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>0.1</ind>
+                <dep>0.01</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.01</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <y>1</y>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>windshield.003</object-name>
+        <object-name>windshield.004</object-name>
+                <property>controls/canopy/window-front</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>0.1</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.2</dep>
+            </entry>
+        </interpolation>
         <axis>
             <x1-m>1.07267</x1-m>
             <y1-m>-0.28993</y1-m>
@@ -658,7 +981,7 @@
             <binding>
                 <command>property-adjust</command>
                 <property>controls/canopy/window-rear</property>
-                <factor>-0.1</factor>
+                <factor>-0.05</factor>
                 <min>0</min>
                 <max>1</max>
                 <wrap>0</wrap>
@@ -668,18 +991,56 @@
             <binding>
                 <command>set-tooltip</command>
                 <tooltip-id>windowR</tooltip-id>
-                <label>Window Front: %2.0f</label>
+                <label>Rear Window: %3d%% open</label>
+                <mapping>percent</mapping>
                 <property>controls/canopy/window-rear</property>
             </binding>
         </hovered>
     </animation>
+    
     
     <animation>
         <type>translate</type>
         <object-name>windshield.001</object-name>
         <object-name>windshield.002</object-name>
                 <property>controls/canopy/window-rear</property>
-        <factor>0.2</factor>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>0.1</ind>
+                <dep>0.01</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.01</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <y>1</y>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>windshield.001</object-name>
+        <object-name>windshield.002</object-name>
+                <property>controls/canopy/window-rear</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>0.1</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.2</dep>
+            </entry>
+        </interpolation>
         <axis>
             <x1-m>1.02097</x1-m>
             <y1-m>-0.2578</y1-m>
@@ -690,6 +1051,77 @@
         </axis>
     </animation>
     
+    <animation>
+        <type>pick</type>
+        <object-name>front-hook-handle</object-name>
+        <object-name>front-hook-handle.2</object-name>
+        <object-name>rear-hook-handle</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/hook-open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/aerotow/open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/winch/open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <mod-up>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/hitches/hook-open</property>
+                        <value type="bool">false</value>
+                    </binding>
+                </mod-up>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>hooks</tooltip-id>
+                <label>Hooks: %s</label>
+                <mapping>open-close</mapping>
+                <property>/sim/hitches/hook-open</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>front-hook-handle</object-name>
+        <object-name>front-hook-handle.2</object-name>
+        <property>/sim/hitches/hook-open</property>
+        <factor>0.02</factor>
+        <axis>
+            <x1-m>0.73145</x1-m>
+            <y1-m>-0.22802</y1-m>
+            <z1-m>0.22686</z1-m>
+            <x2-m>0.90215</x2-m>
+            <y2-m>-0.26599</y2-m>
+            <z2-m>0.24923</z2-m>
+        </axis>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>rear-hook-handle</object-name>
+        <property>/sim/hitches/hook-open</property>
+        <factor>0.02</factor>
+        <axis>
+            <x1-m>1.81831</x1-m>
+            <y1-m>-0.2357</y1-m>
+            <z1-m>0.39184</z1-m>
+            <x2-m>1.86646</x2-m>
+            <y2-m>-0.23645</y2-m>
+            <z2-m>0.37614</z2-m>
+        </axis>
+    </animation>
    <animation>
    <type>rotate</type>
    <object-name>front-airbrakes-handle</object-name>
@@ -872,7 +1304,8 @@
  
  	<animation>
 		<type>rotate</type>
-		<object-name>left-aileron</object-name>
+		<object-name>aileron.L1</object-name>
+		<object-name>aileron.L2</object-name>
 		<property>surface-positions/left-aileron-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
@@ -891,7 +1324,8 @@
 	
 	<animation>
 		<type>rotate</type>
-		<object-name>right-aileron</object-name>
+		<object-name>aileron.R1</object-name>
+		<object-name>aileron.R2</object-name>
 		<property>surface-positions/right-aileron-pos-norm</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
@@ -950,6 +1384,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>front-yoke</object-name>
+		<object-name>ptt-front</object-name>
 		<property>controls/flight/elevator</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
@@ -970,6 +1405,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>front-yoke</object-name>
+		<object-name>ptt-front</object-name>
 		<property>controls/flight/aileron</property>
 		<min-deg>-25</min-deg>
 		<max-deg>25</max-deg>
@@ -989,6 +1425,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>back-yoke</object-name>
+        <object-name>ptt-rear</object-name>
 		<property>controls/flight/elevator</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
@@ -1009,6 +1446,7 @@
  	<animation>
 		<type>rotate</type>
 		<object-name>back-yoke</object-name>
+        <object-name>ptt-rear</object-name>
 		<property>controls/flight/aileron</property>
 		<min-deg>-20</min-deg>
 		<max-deg>20</max-deg>
@@ -1050,24 +1488,26 @@
 		<object-name>front-trim-handl</object-name>
         <drag-direction>horizontal</drag-direction>
         <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
-		<property>controls/flight/spoilers</property>
-                <factor>-0.05</factor>
-                <min>-1</min>
-                <max>1</max>
-                <wrap>0</wrap>
+                        <property>controls/flight/elevator-trim</property>
+            <factor>-0.025</factor>
+            <min>-1</min>
+            <max>1</max>
             </binding>
-        </action><!--
+        </action>
         <hovered>
             <binding>
                 <command>set-tooltip</command>
-                <tooltip-id>trimF</tooltip-id>
-                <label>Elevator trim: %s%</label>
+                <label>Elevator Trim: %3d%%</label>
+                <measure-text>Elevator Trim: 100%</measure-text>
+                <tooltip-id>trim-front</tooltip-id>
                 <mapping>percent</mapping>
-		<property>controls/flight/spoilers</property>
+                <property>controls/flight/elevator-trim</property>
             </binding>
-        </hovered>-->
+        </hovered>
     </animation>
     
 	<animation>
@@ -1089,6 +1529,92 @@
 		</axis>
 	</animation>
 	
+    <!--PushToTalk Front--> 
+    <animation>
+        <type>pick</type>
+        <object-name>ptt-front</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/instrumentation/comm[0]/ptt</property>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/instrumentation/comm[0]/ptt</property>
+                </binding>
+            </mod-up>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>ptt-front</tooltip-id>
+                <label>Push to talk: %s</label>
+                <mapping>on-off</mapping>
+                <property>/instrumentation/comm[0]/ptt</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>ptt-front</object-name>
+        <property>/instrumentation/comm[0]/ptt</property>
+        <factor>0.0025</factor>
+        <axis>
+            <x1-m>0.88632</x1-m>
+            <y1-m>0.0</y1-m>
+            <z1-m>0.12311</z1-m>
+            <x2-m>0.88764</x2-m>
+            <y2-m>0.0</y2-m>
+            <z2-m>0.11516</z2-m>
+        </axis>
+    </animation>
+    <!--Rear--> 
+    <animation>
+        <type>pick</type>
+        <object-name>ptt-rear</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/instrumentation/comm[0]/ptt</property>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/instrumentation/comm[0]/ptt</property>
+                </binding>
+            </mod-up>
+        </action>
+        <hovered>
+            <binding>
+                <command>set-tooltip</command>
+                <tooltip-id>ptt-rear</tooltip-id>
+                <label>Push to talk: %s</label>
+                <mapping>on-off</mapping>
+                <property>/instrumentation/comm[0]/ptt</property>
+            </binding>
+        </hovered>
+    </animation>
+    <animation>
+        <type>translate</type>
+        <object-name>ptt-rear</object-name>
+        <property>/instrumentation/comm[0]/ptt</property>
+        <factor>0.0025</factor>
+        <axis>
+            <x1-m>1.77935</x1-m>
+            <y1-m>0.0</y1-m>
+            <z1-m>0.22973</z1-m>
+            <x2-m>1.782</x2-m>
+            <y2-m>0.0</y2-m>
+            <z2-m>0.22212</z2-m>
+        </axis>
+    </animation>
 	
  <animation>
   <type>rotate</type>
