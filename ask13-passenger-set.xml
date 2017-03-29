@@ -18,6 +18,14 @@
   <status>early-production</status>
   <aircraft-version>20100401</aircraft-version>
   <variant-of>ask13</variant-of>
+
+  <tags>
+       <tag>glider</tag>
+       <tag>1960s</tag>
+       <tag>1970s</tag>
+       <tag>1980s</tag>
+       <tag>dual-controls</tag>
+  </tags>  
   
   <flight-model>null</flight-model>
 

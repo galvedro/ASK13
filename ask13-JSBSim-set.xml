@@ -25,6 +25,14 @@ July 2013
 			<cockpit type="int">0</cockpit>
 		</rating>
 
+		<tags>
+		       <tag>glider</tag>
+		       <tag>1960s</tag>
+		       <tag>1970s</tag>
+		       <tag>1980s</tag>
+		       <tag>dual-controls</tag>
+		</tags>  
+
 		<user>
 			<callsign>Ok where's the engine ?</callsign>
 		</user>

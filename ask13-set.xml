@@ -18,7 +18,15 @@ updated 2016 D-ECHO Benedikt Wolf
   <status>early-production</status>
   <aircraft-version>20100324</aircraft-version>
   
-  
+  <tags>
+       <tag>glider</tag>
+       <tag>1960s</tag>
+       <tag>1970s</tag>
+       <tag>1980s</tag>
+       <tag>dual-controls</tag>
+  </tags>  
+
+
   <flight-model archive="y">yasim</flight-model>
   <aero archive="y">ask13</aero>
   
