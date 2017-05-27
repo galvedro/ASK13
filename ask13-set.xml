@@ -4,19 +4,29 @@
 Yasim Schhleicher ASK 13 Glider
 
 copyright 2010 Patrice Poly
+updated 2016 D-ECHO Benedikt Wolf
 ************************************************************************
 -->
 
-<PropertyList>
+
+<PropertyList include="walker-include.xml">
 
  <sim>
 
-  <description>Schleicher ASK 13 Glider</description>
-  <author>Patrice Poly</author>
+  <description>Schleicher ASK 13 Glider (YASim)</description>
+  <author>Patrice Poly, Benedikt Wolf</author>
   <status>early-production</status>
   <aircraft-version>20100324</aircraft-version>
   
-  
+  <tags>
+       <tag>glider</tag>
+       <tag>1960s</tag>
+       <tag>1970s</tag>
+       <tag>1980s</tag>
+       <tag>dual-controls</tag>
+  </tags>  
+
+
   <flight-model archive="y">yasim</flight-model>
   <aero archive="y">ask13</aero>
   
@@ -25,9 +35,35 @@ copyright 2010 Patrice Poly
 		</startup>
 
 
+    <weight n="0">
+      <name type="string">Pilot</name>
+      <weight-lb type="double">170</weight-lb>
+      <max-lb type="int">200</max-lb>
+      <min-lb type="int">0</min-lb>
+    </weight>
+
+    <weight n="1">
+      <name type="string">Copilot</name>
+      <weight-lb type="double">170</weight-lb>
+      <max-lb type="int">200</max-lb>
+      <min-lb type="int">0</min-lb>
+    </weight>
+
+
   <model>
    <path archive="y">Aircraft/ASK13/Models/ask13.xml</path>
-  </model>
+            <rendering>
+                <reflection-enabled type="int">1</reflection-enabled>
+                <reflection-type type="int">2</reflection-type>
+                <reflection-dynamic type="int">1</reflection-dynamic>
+                <reflection-correction type="float">0.3</reflection-correction>
+                <reflection-fresnel type="float">0.5</reflection-fresnel>
+                <reflection-fresnel-factor type="float">1.0</reflection-fresnel-factor>
+                <reflection-rainbow type="float">0.1</reflection-rainbow>
+                <reflection-noise type="float">0.05</reflection-noise>
+                <ambient-correction type="float">0.15</ambient-correction>
+            </rendering>
+        </model>
 
 		<sound>
 			<path>Aircraft/ASK13/Sounds/ask13-sound.xml</path>
@@ -35,53 +71,92 @@ copyright 2010 Patrice Poly
   
   <help>
    <title>ASK 13</title>
-	<key>
-		<name>Ctrl-w</name>
-		<desc>Place winch 1000m in front of aircraft</desc>
-	</key>
-	<key>
-		<name>W</name>
-		<desc>Toggle winch hook</desc>
-	</key>
-	<key>
-		<name>w</name>
-		<desc>Increase winch speed</desc>
-	</key>
-	<key>
-		<name>Ctrl-o</name>
-		<desc>Find aircraft for aerotow</desc>
-	</key>
-	<key>
-		<name>o</name>
-		<desc>Lock aerotow hook</desc>
-	</key>
-	<key>
-		<name>O</name>
-		<desc>Open aerotow hook</desc>
-	</key>
-<text>
-=== General Help ===
-- "Throttle" axis (or throttle keys) are connected to the glider's airbrake.
-- You can take off using a winch or use another aircraft as an aerotow.
+    <key>
+        <name>Ctrl-w</name>
+        <desc>Place winch in front of aircraft</desc>
+    </key>
+    <key>
+        <name>W</name>
+        <desc>Increase winch speed</desc>
+    </key>
+    <key>
+        <name>w</name>
+        <desc>Decrease winch speed</desc>
+    </key>
+    <key>
+        <name>Ctrl-o</name>
+        <desc>Find aircraft for aerotow</desc>
+    </key>
+    <key>
+        <name>o</name>
+        <desc>Open aerotow and winch hooks. This releases the cable if one is attached.</desc>
+    </key>
+    <key>
+        <name>S</name>
+        <desc>Increase variometer volume</desc>
+    </key>
+    <key>
+        <name>s</name>
+        <desc>Decrease variometer volume</desc>
+    </key>
+    <key>
+        <name>D</name>
+        <desc>Toggle windows</desc>
+    </key>
+    <text>
+    === General Help ===
 
-=== Winch Takeoff Procedure ===
-1. Retract speed brake (full "throttle")
-2. Press Ctrl-w to place winch.
-3. Press 'w' to start winching.
-4. Keep 'w' pressed until at appropriate speed.
-5. Keep aircraft level and take off.
-6. When at appropriate alitude, press 'W' to disconnect winch.
-7. Fly!
+     - "Throttle" axis (or throttle keys) are connected to the glider's airbrake.
+     - The wheel brake is activated progressively by applying more than 85% airbrake.
+     - You can take off using a winch or use another aircraft as an aerotow.
+     - The winch / aerotow cable can be released with the "o" key or using button 1 of the (first) joystick.
+     - NOTE: The Walker uses e (E) and d(D) for walking instead of w and s.
 
-=== Aerotow Takeoff Procedure ===
-1. Retract speed brake (full "throttle")
-2. Place another aerotwo aircraft in front of your glider (multi-player).
-3. Press 'o' to hook to the aerotow.
-4. Ask the other aircraft to take off :).
-5. Keep aircraft level and follow the aircraft until after takeoff..
-6. When at appropriate alitude, press 'O' to disconnect the hook.
-7. Fly!
-</text>
+    === Winch Takeoff Procedure ===
+
+     - Retract speed brake (full throttle).
+     - Set trim just forward of the middle position.
+     - Press 'Ctrl-w' to place winch.
+     - Press 'Shift-w' to start winch and take up cable slack.
+     - When the glider starts moving, press 'Shift-w' several times to accelerate the winch
+       (up to full speed).
+     - Keep the wings level with the aileron and the glider going in a straight line with the rudder.
+       Keep elevator centered, the glider will lift off and rotate by automatically as long as the trim is set
+       correctly.
+       Once the established in the climb, you can pull back on the stick slightly to increase climb rate.
+     - Control the winch speed throughout the entire launch. 'Shift-w' makes the winch run faster,
+       'w' makes it run slower.
+       Try to maintain constant force on the cable, you will need to gradually slow down the winch
+       as glider climbs.
+     - When the glider reaches the top of the launch, close winch throttle to 5% and press 'o'
+       to release the cable.
+
+    === Aerotow Takeoff Procedure ===
+
+      - Retract speed brake (full throttle)
+      - Place another aerotow aircraft in front of your glider (multi-player).
+      - Press 'Ctrl-o' to hook to the aerotow.
+      - Ask the other aircraft to take off :).
+      - Keep wings level and follow the aircraft until after takeoff.
+      - The glider should lift off before the tug, stay close to the ground until the tug starts climbing.
+      - When at appropriate alitude, press 'o' to release the cable.
+
+    === Ground handling ===
+
+    This aircraft has some features to help with ground handling:
+
+      - Enable wing holder: the aircraft gets levelled around the x-axis as if
+        someone was holding your wing.
+      - Enable ground handling: controls are modified to help move the glider around
+        on the ground:
+        1. All rudder inputs will make the glider turn, as if someone was pulling on the wingtip.
+        2. All throttle inputs cause the glider to taxi, as if someone (or a car) was pulling or pushing it.
+      - When exceeding a given speed of 15 kts assisting gears will be reset to off (e.g. on takeoff), ground handling will become inactive at 20kts.
+
+    When there is somebody with a follow-me around, you can connect to it by pressing Ctrl+o
+    (release: Ctrl+shift+o) so he can carry you around the airport
+    or even tow you into the air! (also check the Aerotow Settings therefore).
+    </text>
   </help>
 
   <menubar>
@@ -102,11 +177,46 @@ copyright 2010 Patrice Poly
      	 <command>nasal</command>
      	 <script>ask13.winch_dialog.open()</script>
        </binding>
-     </item>    
+     </item>  
+    <item>
+        <label>Select Livery</label>
+        <binding>
+            <command>nasal</command>
+            <script>aircraft.livery.dialog.open()</script>
+        </binding>
+    </item>  
+    <item>
+        <label>Ground services</label>
+        <binding>
+            <command>nasal</command>
+            <script>ask13.groundservice_dialog.open()</script>
+        </binding>
+    </item>  
+    <item>
+        <label>Simulation Options</label>
+        <binding>
+            <command>nasal</command>
+            <script>ask13.options_dialog.open()</script>
+        </binding>
+    </item>  
     </menu>
    </default>
   </menubar>
 
+
+        <config>
+            <hide-winch-msg type="bool">false</hide-winch-msg>
+        </config>
+        
+        <!-- Save some properties when the simulator is shut down -->
+        <aircraft-data>
+            <path>/sim/model/pilots-enabled</path>
+            <path>/sim/config/hide-winch-msg</path>
+            <path>/sim/weight[0]/weight-lb</path>
+            <path>/sim/weight[1]/weight-lb</path>
+        </aircraft-data>
+        
+        
   <!-- hide the 2D panel -->
  
   <panel>
@@ -145,6 +255,35 @@ copyright 2010 Patrice Poly
   </view>
 	
   <view n="101">
+	<name>Tail View</name>
+	<type>lookfrom</type>
+	<internal type="bool">false</internal>
+	<config>
+	    <from-model type="bool">true</from-model>
+	    <from-model-idx type="int">0</from-model-idx>
+	    
+	    <x-offset-m archive="y">0</x-offset-m>
+	    <y-offset-m archive="y">1.95973</y-offset-m>
+	    <z-offset-m archive="y">7.16316</z-offset-m>
+	    <pitch-offset-deg>-10</pitch-offset-deg>
+            <default-field-of-view-deg>120.0</default-field-of-view-deg>
+	    <limits>
+			<enabled type="bool">true</enabled>
+			<left>
+				<heading-max-deg type="double">95</heading-max-deg>
+				<x-offset-max-m type="double">0.10</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</left>
+			<right>
+				<heading-max-deg type="double">95</heading-max-deg>
+				<x-offset-max-m type="double">0.10</x-offset-max-m>
+				<x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+			</right>
+	    </limits>
+	</config>
+  </view>
+	
+  <view n="102">
 	<name>Copilot</name>
 	<type>lookfrom</type>
 	<internal type="bool">true</internal>
@@ -240,6 +379,10 @@ copyright 2010 Patrice Poly
 				<local-pos-z type="float">0</local-pos-z>
 				<is-slave type="bool">false</is-slave>
 			</aerotow>
+                        <winch>
+                            <automatic-release-angle-deg type="float">90.0</automatic-release-angle-deg>
+                        </winch>
+                        <hook-open type="bool">false</hook-open>
 		</hitches>
 
 		<flight-recorder>
@@ -287,6 +430,7 @@ copyright 2010 Patrice Poly
 
 	</sim>
 	<controls>
+            <ground-handling type="bool">false</ground-handling>
 		<flight>
 		  <elevator-trim>0.2195</elevator-trim> <!-- controllable -->
                   <spoilers alias="/controls/flight/elevator-trim"/> <!-- spoilers is transmitted via mp (elevator-trim is NOT) -->
@@ -306,91 +450,154 @@ copyright 2010 Patrice Poly
 
 	<input>
 		<keyboard>
-                      <!--
-			<key n="23">
-			<name>Ctrl-w</name>
-			<desc>Place Winch 1000m in front of aircraft</desc>
-			<binding>
-				<command>property-assign</command>
-				<property>/controls/winch/place</property>
-				<value type="bool">true</value>
-			</binding>
-			<mod-up>
-				<binding>
-					<command>property-assign</command>
-					<property>/controls/winch/place</property>
-					<value type="bool">false</value>
-				</binding>
-			</mod-up>
-			</key>
-                       -->
-			<key n="23">
-			  <name>Ctrl-w</name>
-			  <desc>Place Winch and hook in</desc>
-			  <binding>
-			    <command>nasal</command>
-			    <script>towing.setWinchPositionAuto()</script>
-			  </binding>
-			</key>
-			<key n="87">
-				<name>W</name>
-				<desc>Toggle winch hook</desc>
-				<binding>
-					<command>nasal</command>
-					<script>
-						var p = "/sim/hitches/winch/open";
-						setprop(p, !getprop(p));
-					</script>
-				</binding>
-			</key>
-			<key n="119">
-				<name>w</name>
-				<desc>Increase winch speed</desc>
-				<binding>
-					<command>nasal</command>
-					<script>interpolate("/sim/hitches/winch/winch/rel-speed", 1.0, 2)</script>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>nasal</command>
-						<script>interpolate("/sim/hitches/winch/winch/rel-speed", 0.0, 2)</script>
-					</binding>
-				</mod-up>
-			</key>
-			<key n="15">
-				<name>Ctrl-o</name>
-				<desc>Find aircraft for aerotow</desc>
-				<binding>
-					<command>property-assign</command>
-					<property>/controls/aerotow/find-aircraft</property>
-					<value type="bool">true</value>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>property-assign</command>
-						<property>/controls/aerotow/find-aircraft</property>
-						<value type="bool">false</value>
-					</binding>
-				</mod-up>
-			</key>
-			<key n="111">
-				<name>o</name>
-				<desc>Lock aerotow hook</desc>
-				<binding>
-					<command>property-assign</command>
-					<property>/sim/hitches/aerotow/open</property>
-					<value type="bool">false</value>
-				</binding>
-			</key>
-			<key n="79">
-				<name>O</name>
-				<desc>Open aerotow hook</desc>
-				<binding>
-					<command>property-assign</command>
-					<property>/sim/hitches/aerotow/open</property>
-					<value type="bool">true</value>
-				</binding>
-			</key>
+        <key n="127">
+            <name>Delete</name>
+            <desc>Toggle Reversers</desc>
+            <binding>
+                <condition>
+                    <less-than>
+                        <property>controls/engines/engine[0]/throttle</property>
+                        <value>0.1</value>
+                    </less-than>
+                </condition>
+                <command>property-toggle</command>
+                <property>controls/engines/engine[0]/reverser</property>
+            </binding>
+        </key>
+            <key n="68">
+                <name>D</name>
+                <desc>Toggle Both Windows</desc>
+                <binding>
+                    <condition>
+                        <less-than>
+                            <property>sim/model/door-positions/frontwin/position-norm</property>
+                            <value>0.5</value>
+                        </less-than>
+                    </condition>
+                    <command>property-interpolate</command>
+                    <property>sim/model/door-positions/frontwin/position-norm</property>
+                    <value type="double">1.0</value>
+                    <rate>0.5</rate>
+                </binding>
+                <binding>
+                    <condition>
+                        <greater-than-equals>
+                            <property>sim/model/door-positions/frontwin/position-norm</property> 
+                            <value>0.5</value>
+                        </greater-than-equals>
+                    </condition>
+                    <command>property-interpolate</command>
+                    <property>sim/model/door-positions/frontwin/position-norm</property>
+                    <value type="double">0.0</value>
+                    <rate>0.5</rate>
+                </binding>
+                <binding>
+                    <!-- using frontwin in the conditional for readwin in order to synchronize both windows positions -->
+                    <condition>
+                        <less-than>
+                            <property>sim/model/door-positions/frontwin/position-norm</property>
+                            <value>0.5</value>
+                        </less-than>
+                    </condition>
+                    <command>property-interpolate</command>
+                    <property>sim/model/door-positions/rearwin/position-norm</property>
+                    <value type="double">1.0</value>
+                    <rate>0.5</rate>
+                </binding>
+                <binding>
+                    <condition>
+                        <greater-than-equals>
+                            <property>sim/model/door-positions/frontwin/position-norm</property>
+                            <value>0.5</value>
+                        </greater-than-equals>
+                    </condition>
+                    <command>property-interpolate</command>
+                    <property>sim/model/door-positions/rearwin/position-norm</property>
+                    <value type="double">0.0</value>
+                    <rate>0.5</rate>
+                </binding>
+            </key>
+            <key n="23">
+                <name>Ctrl-w</name>
+                <desc>Place winch in front of aircraft</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>towing.setWinchPositionAuto()</script>
+                </binding>
+            </key>
+            <key n="87">
+                <name>W</name>
+                <desc>Increase winch speed</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        throttle = getprop("/sim/hitches/winch/winch/rel-speed") + 0.05;
+                        if (throttle > 1) throttle = 1;
+                        setprop("/sim/hitches/winch/winch/rel-speed", throttle);
+                        speed = throttle * getprop("/sim/hitches/winch/winch/max-speed-m-s");
+                        force = getprop("/sim/hitches/winch/force");
+                        gui.popupTip(sprintf("Winch throttle %d%%, speed %0.2f m/s, force %0.2f", throttle * 100, speed, force));
+                    </script>
+                </binding>
+            </key>
+            <key n="119">
+                <name>w</name>
+                <desc>Decrease winch speed</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>
+                        throttle = getprop("/sim/hitches/winch/winch/rel-speed") - 0.05;
+                        if (0 > throttle) throttle = 0;
+                        setprop("/sim/hitches/winch/winch/rel-speed", throttle);
+                        speed = throttle * getprop("/sim/hitches/winch/winch/max-speed-m-s");
+                        force = getprop("/sim/hitches/winch/force");
+                        gui.popupTip(sprintf("Winch throttle %d%%, speed %0.2f m/s, force %0.2f", throttle * 100, speed, force));
+                    </script>
+                </binding>
+            </key>
+            <key n="15">
+                <name>Ctrl-o</name>
+                <desc>Find aircraft for aerotow</desc>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/aerotow/find-aircraft</property>
+                    <value type="bool">true</value>
+                </binding>
+                <mod-up>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/controls/aerotow/find-aircraft</property>
+                        <value type="bool">false</value>
+                    </binding>
+                </mod-up>
+            </key>
+            <key n="111">
+                <name>o</name>
+                <desc>Open hook</desc>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/hook-open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/aerotow/open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/hitches/winch/open</property>
+                    <value type="bool">true</value>
+                </binding>
+                <mod-up>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/sim/hitches/hook-open</property>
+                        <value type="bool">false</value>
+                    </binding>
+                </mod-up>
+
+            </key>
 		</keyboard>
 	</input>
 
@@ -401,7 +608,13 @@ copyright 2010 Patrice Poly
 			<file>Aircraft/ASK13/Nasal/AR3201.nas</file>
 			<file>Aircraft/ASK13/Nasal/immat.nas</file>
 			<file>Aircraft/ASK13/Nasal/dialogs.nas</file>
+			<file>Aircraft/ASK13/Nasal/groundhandling.nas</file>
+			<file>Aircraft/ASK13/Nasal/liveries.nas</file>
+			<file>Aircraft/ASK13/Nasal/jsoverride.nas</file>
 		</ask13>
+                <doors>
+                    <file>Nasal/doors.nas</file>
+                </doors>
 	</nasal>
   
 </PropertyList>
