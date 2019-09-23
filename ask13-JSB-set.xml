@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Ask 13 simulation config. This files ties together all the components
+used by FGFS to represent the Ask 13. Components include the flight data 
+model, instrument panel, and external 3D model.
+
+July 2013
+************************************************************************
+-->
+<PropertyList include="ask13-main.xml">
+	<sim>
+		<description>ASK13 (JSB)</description>
+		<author>D-ECHO based on ASK13-T4T by Simon'bomber'Morley(FDM),Patrice Poly(3D)</author>
+		<status>development</status>
+		<variant-of>ask13</variant-of>
+		<rating>
+			<FDM type="int">0</FDM>
+			<systems type="int">0</systems>
+			<model type="int">0</model>
+			<cockpit type="int">0</cockpit>
+		</rating>
+		<flight-model>jsb</flight-model>
+		<aero>ask13jsb</aero>
+		<startup>
+			<splash-texture>Aircraft/ASK13/splash.png</splash-texture>
+		</startup>
+		<sound>
+			<path>Aircraft/ASK13/Sounds/ask13-sound.xml</path>
+		</sound>
+		<systems>
+			<property-rule n="102">
+				<name>JSB Wingflex</name>
+				<path>Systems/jsb_wingflex.xml</path>
+			</property-rule>
+		</systems>
+		<hitches>
+			<aerotow>
+				<force_name_jsbsim type="string">aerotow_hitch</force_name_jsbsim>
+				<force-is-calculated-by-other type="bool">false</force-is-calculated-by-other>
+				<mp-auto-connect-period type="float">0.0</mp-auto-connect-period>
+				<!-- OPTIONAL
+				<decoupled-force-and-rope-locations type="bool">true</decoupled-force-and-rope-locations>
+				<local-pos-x type="float">1.5</local-pos-x>
+				<local-pos-y type="float"> 0.00</local-pos-y>
+				<local-pos-z type="float">-0.3</local-pos-z>
+				-->
+			</aerotow>
+		</hitches>
+		<glider>
+			<winch>
+				<conf>
+					<rope_initial_length_m>1000.0</rope_initial_length_m>
+					<pull_max_lbs>1000.0</pull_max_lbs>
+<!--					<pull_max_speed_mps>35</pull_max_speed_mps>-->
+				</conf>
+			</winch>
+			<towing>
+				<conf>
+					<rope_length_m>60.0</rope_length_m>
+					<nominal_towforce_lbs>500.0</nominal_towforce_lbs>
+					<breaking_towforce_lbs>9999.0</breaking_towforce_lbs>
+				</conf>
+				<hooked>0</hooked>
+			</towing>
+			<ac-designator type="string">ASK13</ac-designator>
+		</glider>
+	</sim>
+	<payload>
+		<weight n="0">
+			<name>Pilot</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">243</max-lb>
+		</weight>
+		<weight n="1">
+			<name>Trim Weight</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">33</max-lb>
+		</weight>
+		<weight n="2">
+			<name>Copilot</name>
+			<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+			<min-lb type="double">0</min-lb>
+			<max-lb type="double">243</max-lb>
+		</weight>
+	</payload>
+	<controls>
+		<winch>
+			<place type="bool">false</place>
+		</winch>
+		<aerotow>
+			<find-aircraft type="bool">false</find-aircraft>
+		</aerotow>
+	</controls>
+	<input>
+		<keyboard>
+			<key n="15">
+				<name>Ctrl-o</name>
+				<desc>Find aircraft for aerotow</desc>
+				<binding>
+					<command>nasal</command>
+					<script>towing.findBestAIObject()</script>
+				</binding>
+			</key>
+			<key n="111">
+				<name>o</name>
+				<desc>Lock aerotow-hook</desc>
+				<binding>
+					<command>nasal</command>
+					<script>towing.closeHitch()</script>
+				</binding>
+			</key>
+			<key n="23">
+				<name>Ctrl-w</name>
+				<desc>Place Winch and hook in</desc>
+				<binding>
+					<command>nasal</command>
+					<script>winch.placeWinch();
+					winch.startWinch();</script>
+				</binding>
+			</key>
+			<key n="87">
+				<name>W</name>
+				<desc>Increase winch speed</desc>
+				<binding>
+					<command>nasal</command>
+					<script>winch.winch_faster()</script>
+				</binding>
+			</key>
+			<key n="119">
+				<name>w</name>
+				<desc>Decrease winch speed</desc>
+				<binding>
+					<command>nasal</command>
+					<script>winch.winch_slower()</script>
+				</binding>
+			</key>
+			<key n="111">
+				<name>o</name>
+				<desc>Open hook</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/hitches/hook-open</property>
+					<value type="bool">true</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/hitches/aerotow/open</property>
+					<value type="bool">true</value>
+				</binding>
+				<binding>
+					<command>property-assign</command>
+					<property>/sim/hitches/winch/open</property>
+					<value type="bool">true</value>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>towing.releaseHitch("aerotow")</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/hitches/hook-open</property>
+						<value type="bool">false</value>
+					</binding>
+				</mod-up>
+			</key>
+		</keyboard>
+	</input>
+	<nasal>
+		<winch>
+			<file>Aircraft/ASK13/Nasal/message.nas</file>
+			<file>Aircraft/ASK13/Nasal/winch_jsb.nas</file>
+		</winch>
+	</nasal>
+</PropertyList>

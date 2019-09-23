@@ -93,7 +93,7 @@
         <object-name>aileron.L2</object-name>
         <object-name>left-top-airbrake</object-name>
         <object-name>left-bottom-airbrake</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -118,7 +118,7 @@
         <object-name>aileron.L2</object-name>
         <object-name>left-top-airbrake</object-name>
         <object-name>left-bottom-airbrake</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -140,7 +140,7 @@
         <object-name>wingskidL</object-name>
         <object-name>aileron.L1</object-name>
         <object-name>aileron.L2</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -160,7 +160,7 @@
         <object-name>wing.L5</object-name>
         <object-name>wingskidL</object-name>
         <object-name>aileron.L2</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -178,7 +178,7 @@
         <type>rotate</type>
         <object-name>wing.L5</object-name>
         <object-name>wingskidL</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -204,7 +204,7 @@
         <object-name>aileron.R2</object-name>
         <object-name>right-top-airbrake</object-name>
         <object-name>right-bottom-airbrake</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -229,7 +229,7 @@
         <object-name>aileron.R2</object-name>
         <object-name>right-top-airbrake</object-name>
         <object-name>right-bottom-airbrake</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -251,7 +251,7 @@
         <object-name>wingskidR</object-name>
         <object-name>aileron.R1</object-name>
         <object-name>aileron.R2</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -271,7 +271,7 @@
         <object-name>wing.R5</object-name>
         <object-name>wingskidR</object-name>
         <object-name>aileron.R2</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -289,7 +289,7 @@
         <type>rotate</type>
         <object-name>wing.R5</object-name>
         <object-name>wingskidR</object-name>
-        <property>accelerations/pilot-g[0]</property>
+        <property>sim/systems/wingflexer/z-m</property>
         <factor>-0.5</factor>
         <offset-deg>0</offset-deg>
         <center>
@@ -305,7 +305,7 @@
     </animation>
     
  <model>
-	 <path>Aircraft/ASK13/Models/instruments/vario-5stv5/winter-vario-5stv5.xml</path>
+	 <path>Instruments/vario-5stv5/winter-vario-5stv5.xml</path>
 	 <offsets>
 		 <x-m>0.707</x-m>
 		 <y-m> 0.093</y-m>
@@ -325,7 +325,7 @@
  </model>
  
   <model>
-	 <path>Aircraft/ASK13/Models/instruments/vario-5stv5/winter-vario-5stv5.xml</path>
+	 <path>Instruments/vario-5stv5/winter-vario-5stv5.xml</path>
 	 <offsets>
 		 <x-m>1.786</x-m>
 		 <y-m>-0.110</y-m>
@@ -335,7 +335,7 @@
  </model>
  
   <model>
-	 <path>Aircraft/ASK13/Models/instruments/winter-asi-6221/winter-asi-6221.xml</path>
+	 <path>Instruments/winter-asi-6221/winter-asi-6221.xml</path>
 	 <offsets>
 		 <x-m>0.707</x-m>
 		 <y-m> -0.093</y-m>
@@ -345,7 +345,7 @@
  </model>
  
    <model>
-	 <path>Aircraft/ASK13/Models/instruments/winter-asi-6221/winter-asi-6221.xml</path>
+	 <path>Instruments/winter-asi-6221/winter-asi-6221.xml</path>
 	 <offsets>
 		 <x-m>1.782</x-m>
 		 <y-m>0.00</y-m>
@@ -377,7 +377,7 @@
  </model>
 
   <model>
-	 <path>Aircraft/ASK13/Models/instruments/wool-thread/wool-thread.xml</path>
+	 <path>Instruments/wool-thread/wool-thread.xml</path>
 	 <offsets>
 		 <x-m>0.786</x-m>
 		 <y-m> 0</y-m>
@@ -1307,8 +1307,6 @@
 		<object-name>aileron.L1</object-name>
 		<object-name>aileron.L2</object-name>
 		<property>surface-positions/left-aileron-pos-norm</property>
-		<min-deg>-20</min-deg>
-		<max-deg>20</max-deg>
 		<factor>-20</factor>
 		<center>
 			<x-m>2.443574</x-m>
@@ -1326,10 +1324,8 @@
 		<type>rotate</type>
 		<object-name>aileron.R1</object-name>
 		<object-name>aileron.R2</object-name>
-		<property>surface-positions/right-aileron-pos-norm</property>
-		<min-deg>-20</min-deg>
-		<max-deg>20</max-deg>
-		<factor>20</factor>
+		<property>surface-positions/left-aileron-pos-norm</property>
+		<factor>-20</factor>
 		<center>
 			<x-m>2.443574</x-m>
 			<y-m>5.697772</y-m>
