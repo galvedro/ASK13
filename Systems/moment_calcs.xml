@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+
+<system name="moment_calcs">
+	
+	<channel name="moment_calcs">		
+										
+<!-- WING CENTRE OF LIFT CALCS -->
+
+	<!-- BODY frame (+ve moment = clockwise) -->
+	
+	<fcs_function name="T4T/moments/Roll_wing_left-lbsft">
+		<function>
+		<description>left-wing roll moment</description>
+				<sum>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_1-lbs</property>
+						<property>T4T/structure/wing_left_1/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_2-lbs</property>
+						<property>T4T/structure/wing_left_2/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_3-lbs</property>
+						<property>T4T/structure/wing_left_3/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_4-lbs</property>
+						<property>T4T/structure/wing_left_4/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_5-lbs</property>
+						<property>T4T/structure/wing_left_5/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_6-lbs</property>
+						<property>T4T/structure/wing_left_6/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_7-lbs</property>
+						<property>T4T/structure/wing_left_7/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_left_8-lbs</property>
+						<property>T4T/structure/wing_left_8/y</property> <!-- lift force acts at -->
+					</product>					
+				</sum>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/CoL-Y_wing_left-ft">
+		<function>
+		<description>for calc purposes only</description>
+			<quotient>
+				<property>T4T/moments/Roll_wing_left-lbsft</property>
+				<property>T4T/forces/z-vector_wings_left-lbs</property>		
+			</quotient>
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/moments/CoL_wing_left-X-ft">
+		<function>
+		<description>left wing Centre of lift in the X axis</description>
+			<difference> <!-- Distance from its centre of force to the CoG X in FT -->
+				<sum>			
+					<table name="T4T/moments/wing_left_0.25mach">
+						<independentVar><property>T4T/moments/CoL-Y_wing_left-ft</property></independentVar>
+						<tableData>
+							-25	-1.53 <!-- Distance Y, X of the 25% mac -->
+							0	1.47 <!-- Distance Y, X of the 25% mac -->
+							25	-1.53 <!-- Distance Y, X of the 25% mac -->						
+						</tableData>
+					</table>
+					<product name="T4T/moments/Cm-adjustment_wing_left">
+						<table name="T4T/moments/cord_wing_left-ft">
+							<independentVar><property>T4T/moments/CoL-Y_wing_left-ft</property></independentVar>
+							<tableData>
+								-25	2.15 <!-- cord at tip -->
+								0	5.0 <!-- cord at root -->
+								25	2.15 <!-- cord at tip -->									
+							</tableData>
+						</table>
+						<table name="T4T/moments/Cm_wing">
+							<independentVar><property>aero/alpha-deg</property></independentVar>
+							<tableData>
+								-27	0.07 <!-- cm of the 25% mac -->
+								0	0.14 <!-- cm of the 25% mac -->
+								23	0.17 <!-- cm of the 25% mac -->
+							</tableData>
+						</table>
+					</product>
+					<product name="T4T/moments/machtuck-adjustment">
+						<property>T4T/moments/cord_wing_left-ft</property>
+						<table >
+							<independentVar><property>velocities/mach</property></independentVar>
+							<tableData>
+								0.75 	0
+								1		1 <!-- cm at trailing edge -->
+							</tableData>
+						</table>
+					</product>
+				</sum>
+				<quotient>
+					<property>inertia/cg-x-in</property>
+					<value> 12 </value>
+				</quotient>
+			</difference>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/Roll_wing_right-lbsft">
+		<function>
+		<description>right-wing roll moment</description>
+				<sum>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_1-lbs</property>
+						<property>T4T/structure/wing_right_1/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_2-lbs</property>
+						<property>T4T/structure/wing_right_2/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_3-lbs</property>
+						<property>T4T/structure/wing_right_3/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_4-lbs</property>
+						<property>T4T/structure/wing_right_4/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_5-lbs</property>
+						<property>T4T/structure/wing_right_5/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_6-lbs</property>
+						<property>T4T/structure/wing_right_6/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_7-lbs</property>
+						<property>T4T/structure/wing_right_7/y</property> <!-- lift force acts at -->
+					</product>
+					<product>
+						<property>T4T/forces/z-vector_wing_right_8-lbs</property>
+						<property>T4T/structure/wing_right_8/y</property> <!-- lift force acts at -->
+					</product>					
+				</sum>
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="T4T/moments/CoL-Y_wing_right-ft">
+		<function>
+		<description>for calc purposes only</description>
+			<quotient>
+				<property>T4T/moments/Roll_wing_right-lbsft</property>
+				<property>T4T/forces/z-vector_wings_right-lbs</property>					
+			</quotient>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/aero/incidence-CoL_wing_right-deg">
+		<function>
+		<description>right wing Centre of lift incidence</description>	
+			<table>
+				<independentVar><property>T4T/moments/CoL-Y_wing_right-ft</property></independentVar>
+				<tableData>
+					0	5 <!-- Distance Y, incidence -->				
+					25	1 <!-- Distance Y, incidence -->
+				</tableData>
+			</table>	
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/CoL_wing_right-X-ft">
+		<function>
+		<description>right wing Centre of lift in the X axis</description>
+			<difference> <!-- Distance from its centre of force to the CoG X in FT -->
+				<sum>			
+					<table name="T4T/moments/wing_right_0.25mach">
+						<independentVar><property>T4T/moments/CoL-Y_wing_right-ft</property></independentVar>
+						<tableData>
+							-25	-1.53 <!-- Distance Y, X of the 25% mac -->						
+							0	1.47 <!-- Distance Y, X of the 25% mac -->						
+							25	-1.53 <!-- Distance Y, X of the 25% mac -->
+						</tableData>
+					</table>
+					<product name="T4T/moments/Cm-adjustment_wing_right">
+						<table name="T4T/moments/cord_wing_right-ft">
+							<independentVar><property>T4T/moments/CoL-Y_wing_right-ft</property></independentVar>
+							<tableData>
+								-25	2.15 <!-- cord at tip -->							
+								0	5.0 <!-- cord at root -->							
+								25	2.15 <!-- cord at tip -->									
+							</tableData>
+						</table>
+						<property>T4T/moments/Cm_wing</property>
+					</product>
+					<property>T4T/moments/machtuck-adjustment</property>
+				</sum>
+				<quotient>
+					<property>inertia/cg-x-in</property>
+					<value> 12 </value>
+				</quotient>
+			</difference>
+		</function>
+	</fcs_function>
+	
+	
+	<!-- ROLL MOMENT -->	
+	<!-- wing Roll Clockwise +ve around x axis-->
+	
+	<fcs_function name="T4T/moments/Roll_dampening_rotate-lbsft">	
+		<function>
+        <description>dampening roll</description>
+			<product>			
+				<!-- Dynamic Pressure -->				
+				<value> 0.5 </value>
+				<!-- Air Density lbsft3 -->
+				<value> 32.17 </value>
+				<property>atmosphere/rho-slugs_ft3</property> 
+				<!-- V2 -->									
+				<pow>
+					<product>
+						<!-- Revolutions per Second -->
+						<quotient>
+							<property>velocities/p-aero-rad_sec</property>
+							<value> 6.284 </value>
+						</quotient>					
+						<!-- Circumference -->
+						<value> 3.142 </value>
+						<value> 7.3 </value> <!-- based on wing shape -->					
+					</product>
+					<value> 2 </value>
+				</pow>
+				<!-- Area -->													
+				<sum>
+					<property>metrics/Sw-sqft</property>
+					<property>metrics/Sh-sqft</property>
+					<property>metrics/Sv-sqft</property>
+				</sum>
+				<table>
+					<independentVar>velocities/p-aero-rad_sec</independentVar>
+					<tableData>
+						-0.1	1.28				
+						0.0		0
+						0.1		-1.28
+					</tableData>
+				</table>
+				<value> 7.3 </value> <!-- based on wing shape - Armature Distance -->
+            </product>
+        </function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/Roll_vector-lbsft">	
+		<function>
+			<description>roll moment</description>
+			<sum>			
+				<sum name="T4T/moments/Roll_wing-lbsft">		
+					<property>T4T/moments/Roll_wing_left-lbsft</property>
+					<property>T4T/moments/Roll_wing_right-lbsft</property>					
+				</sum>
+				<sum name="T4T/moments/Roll_h-stab-lbsft">		
+					<product name="T4T/moments/Roll_h-stab_left-lbsft">
+						<property>T4T/forces/z-vector_h-stab_left-lbs</property>
+						<property>T4T/structure/h-stab_left/y</property>
+					</product>
+					<product name="T4T/moments/Roll_h-stab_right-lbsft">
+						<property>T4T/forces/z-vector_h-stab_right-lbs</property>
+						<property>T4T/structure/h-stab_right/y</property>
+					</product>			
+				</sum>
+				<product name="T4T/moments/Roll_v-stab-lbsft">
+					<property>T4T/forces/normal_v-stab-lbs</property>
+					<property>T4T/structure/v-stab/z</property>
+				</product>			
+			</sum>						
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="T4T/moments/ROLL-lbsft">
+		<function>
+		<description>roll moment</description>
+			<sum>
+				<property>T4T/moments/Roll_dampening_rotate-lbsft</property>
+				<property>T4T/moments/Roll_vector-lbsft</property>						
+			</sum>						
+		</function>
+	</fcs_function>	
+
+	<!-- PITCH MOMENT -->
+	<!-- Nose Pitch up z +ve around y axis-->
+
+	<fcs_function name="T4T/moments/Pitch_dampening_rotate_tail-lbsft">	
+		<function>
+        <description>dampening pitch tail</description>
+            <product>
+				<product>
+					<!-- Rotating Dynamic Pressure -->
+					<value> 0.5 </value>
+					<!-- Air Density -->
+					<value> 32.17 </value>
+					<property>atmosphere/rho-slugs_ft3</property> 
+					<!-- V2 -->
+					<pow>
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/q-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>
+							<!-- Circumference -->
+							<value> 3.142 </value>
+							<difference name="T4T/moments/armature_tail-ft"> <!-- Distance from its centre of force to the CoG X in FT -->
+								<property>T4T/structure/h-stab_left/x</property>
+								<quotient>
+									<property>inertia/cg-x-in</property>
+									<value> 12 </value>
+								</quotient>
+							</difference>
+						</product>
+						<value> 2 </value>
+					</pow>
+				</product>						
+				<property>metrics/Sh-sqft</property>
+				<table>
+					<independentVar>velocities/q-aero-rad_sec</independentVar>
+					<tableData>
+						-0.1	1.28
+						0.0		0
+						0.1		-1.28
+					</tableData>
+				</table>
+				<property>T4T/moments/armature_tail-ft</property>									
+            </product>
+		</function>
+	</fcs_function>	
+	
+	<fcs_function name="T4T/moments/Pitch_dampening_rate-lbsft">		
+        <function>
+        <description>dampening pitch</description>	
+            <product>			
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->	
+				<property>metrics/Sh-sqft</property>
+                <property>velocities/q-aero-rad_sec</property>
+				<value> -1.28 </value>
+				<property>T4T/moments/armature_tail-ft</property>	
+			</product>				
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/moments/Pitch_vector-lbsft">
+		<function>
+			<description>pitch moment lift</description>
+			<sum>
+				<product name="T4T/moments/Pitch_wing-lbsft">
+					<sum>
+						<property>T4T/forces/z-vector_wings_left-lbs</property>
+						<property>T4T/forces/z-vector_wings_right-lbs</property>
+					</sum>
+					<avg>
+						<property>T4T/moments/CoL_wing_left-X-ft</property>
+						<property>T4T/moments/CoL_wing_right-X-ft</property>
+					</avg>							
+				</product>			
+				<product name="T4T/moments/Pitch_h-stab-lbsft">
+					<sum>
+						<property>T4T/forces/z-vector_h-stab_left-lbs</property>
+						<property>T4T/forces/z-vector_h-stab_right-lbs</property>
+					</sum>
+					<property>T4T/moments/armature_tail-ft</property>						
+				</product>			
+			</sum>				
+		</function>	
+	</fcs_function>	
+
+	<fcs_function name="T4T/moments/PITCH-lbsft">
+	<function>
+		<description>pitch moment</description>
+			<sum>
+				<property>T4T/moments/Pitch_dampening_rotate_tail-lbsft</property>
+				<property>T4T/moments/Pitch_dampening_rate-lbsft</property>
+				<property>T4T/moments/Pitch_vector-lbsft</property>				
+			</sum>						
+	</function>
+	</fcs_function>
+	
+		
+	
+
+	<!-- YAW MOMENT -->	
+	<!-- Nose Yaw right +ve around z axis -->
+	
+	<fcs_function name="T4T/moments/Yaw_dampening_rotate_tail-lbsft">	
+		<function>
+        <description>dampening yaw tail</description>
+            <product>
+				<product>
+					<!-- Rotating Dynamic Pressure -->
+					<value> 0.5 </value>
+					<!-- Air Density -->
+					<value> 32.17 </value>
+					<property>atmosphere/rho-slugs_ft3</property> 
+					<!-- V2 -->
+					<pow>
+						<product>
+							<!-- Revolutions per Second -->
+							<quotient>
+								<property>velocities/r-aero-rad_sec</property>
+								<value> 6.284 </value>
+							</quotient>
+							<!-- Circumference -->
+							<value> 3.142 </value>
+							<property>T4T/moments/armature_tail-ft</property>	
+						</product>
+						<value> 2 </value>
+					</pow>
+				</product>						
+				<property>metrics/Sv-sqft</property>
+				<table>
+					<independentVar>velocities/r-aero-rad_sec</independentVar>
+					<tableData>
+						-0.1	1.28
+						0.0		0
+						0.1		-1.28
+						</tableData>
+				</table>
+				<property>T4T/moments/armature_tail-ft</property>											
+            </product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/Yaw_dampening_rate-lbsft">		
+        <function>
+        <description>dampening yaw</description>	
+            <product>
+				<value> 1.0 </value> <!-- magic number -->				
+				<property>aero/qbar-psf</property> <!-- dynamic pressure -->	
+				<property>metrics/Sv-sqft</property>
+                <property>velocities/r-aero-rad_sec</property>
+				<value> -1.28 </value>
+				<property>T4T/moments/armature_tail-ft</property>	
+			</product>				
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/Yaw_v-stab_vector-lbsft">		
+		<function>
+			<description>yaw moment</description>
+			<product>
+				<value> -1 </value>
+				<property>T4T/forces/normal_v-stab-lbs</property>
+				<property>T4T/moments/armature_tail-ft</property>
+			</product>
+		</function>
+	</fcs_function>
+	
+	<fcs_function name="T4T/moments/Yaw_wings-lbsft">		
+		<function>
+			<description>yaw moment</description>
+			<sum>		
+				<product>
+					<property>T4T/forces/y-vector_wing_left-lbs</property>
+					<property>T4T/moments/CoL_wing_left-X-ft</property>
+				</product>
+				<product>
+					<property>T4T/forces/y-vector_wing_right-lbs</property>
+					<property>T4T/moments/CoL_wing_right-X-ft</property>
+				</product>				
+			</sum>				
+		</function>
+	</fcs_function>
+
+	<fcs_function name="T4T/moments/Yaw_wing_drag-induced-lbsft">	
+		<function>
+			<description>yaw moment</description>
+			<sum>
+				<product name="T4T/moments/Yaw_wing_left_drag-induced-lbsft">					
+					<property>T4T/forces/drag/induced-vortex_wing_left-lbs</property>
+					<property>T4T/structure/wing_left_8/y</property>
+				</product>
+				<product name="T4T/moments/Yaw_wing_right_drag-induced-lbsft">					
+					<property>T4T/forces/drag/induced-vortex_wing_right-lbs</property>
+					<property>T4T/structure/wing_right_8/y</property>
+				</product>
+			</sum>
+		</function>	
+	</fcs_function>	
+	
+	<fcs_function name="T4T/moments/YAW-lbsft">
+	<function>
+		<description>yaw moment</description>
+			<sum>
+				<property>T4T/moments/Yaw_dampening_rotate_tail-lbsft</property>
+				<property>T4T/moments/Yaw_dampening_rate-lbsft</property>
+				<property>T4T/moments/Yaw_v-stab_vector-lbsft</property>
+				<property>T4T/moments/Yaw_wings-lbsft</property>
+				<property>T4T/moments/Yaw_wing_drag-induced-lbsft</property>				
+			</sum>						
+	</function>
+	</fcs_function>
+
+
+	
+	</channel>
+
+</system>
